@@ -1,0 +1,8 @@
+.top-bar__content {
+    display: flex;
+    justify-content: end;
+}
+
+.top-bar {
+    background: var(--color-black);
+}

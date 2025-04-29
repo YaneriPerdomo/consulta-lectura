@@ -1,0 +1,26 @@
+/* Search */
+
+.search__input-group > span,
+.search__input {
+    background: rgb(24, 87, 153) !important;
+    border: solid 2px rgb(40, 123, 212) !important;
+}
+
+.search__input::placeholder {
+    color: white;
+}
+
+.search__input:hover {
+    background-color: var(--color-blue);
+}
+
+.input-radio--hidden {
+    display: none;
+}
+
+.checked {
+    filter: drop-shadow(0px 4px 0px var(--color-black));
+    transform: perspective(500px) translateZ(20px);
+    transform-style: preserve-3d;
+    transition: all 0.5s linear;
+}

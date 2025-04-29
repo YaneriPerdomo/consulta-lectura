@@ -1,0 +1,14 @@
+footer {
+    background: rgb(47, 47, 47);
+    color: white;
+}
+
+footer > p {
+    padding: 1rem;
+    margin: 0rem;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: white;
+}

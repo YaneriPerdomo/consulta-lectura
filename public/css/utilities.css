@@ -1,0 +1,27 @@
+.flex-full__justify-content-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.flex-full__justify-content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.flex__grow-2 {
+    flex-grow: 2;
+}
+
+.text-blue {
+    color: var(--color-blue) !important;
+}
+
+.text-red{
+    color:var(--color-red) !important;
+}

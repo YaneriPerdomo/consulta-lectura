@@ -1,0 +1,14 @@
+.button--color-blue {
+    background-color: var(--color-blue) !important;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    color: white;
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+}
+.button--no-background {
+    border: solid 2px var(--color-blue);
+}

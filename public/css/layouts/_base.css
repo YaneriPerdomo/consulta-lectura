@@ -1,0 +1,14 @@
+.height-full {
+    height: 100%;
+}
+:root {
+    --color-blue: rgb(28, 103, 181);
+    --color-red: rgb(229, 55, 43);
+    --color-black: rgb(47, 47, 47);
+    --color-grey: #5b5b5b;
+    --color-grey-two: #979797;
+}
+body {
+    background: rgb(230, 230, 230) !important;
+}
+
