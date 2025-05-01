@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'user_id',
         'role_id',
         'user',
         'name',
@@ -25,7 +26,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    
+
 
     protected $primaryKey = 'user_id';
 
@@ -50,5 +51,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function rol()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+
+    public function person()
+    {
+        return $this->hasOne(Person::class, 'user_id'); // 'user_id' es la clave foránea en la tabla 'personas'
     }
 }

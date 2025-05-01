@@ -31,7 +31,7 @@
 /*Validation*/
 
 .is-invalid--border {
-    border: solid 1px var(--color-red);
+    border: solid 1px var(--color-red) !important;
 }
 .alert {
     margin: 0 !important;

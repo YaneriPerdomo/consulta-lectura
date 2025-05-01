@@ -15,7 +15,7 @@ class CreateAccountController extends Controller
 {
    public function index()
    {
-      return view('create-account-two');
+      return view('create-account');
    }
 
    public function store(CreateAccountRequest $request)
@@ -44,6 +44,9 @@ class CreateAccountController extends Controller
 
          ]);
          FacadesDB::commit();
+         $request->session()->flash('alert-success', 
+                                 'Tu registro se ha completado. Ya puedes iniciar sesión en tu cuenta.'
+                                    );
          return redirect('/iniciar-sesion');
       } catch (\Exception $ex) {
          FacadesDB::rollBack();

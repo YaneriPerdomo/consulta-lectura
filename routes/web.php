@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/recursos-b', [WelcomeController::class, 'index'])->name('welcome');
@@ -19,10 +20,15 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/create-rol', [RoleController::class, 'index']);
 Route::get('/create-account', [UserController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return 'hola';// Crea esta vista si no la tienes
-})->middleware('auth');
-/**
- * Route::post('/create-account', [UserController::class, 'store'])->name('create-account');
 
- */
+Route::get('/tambien', function () {
+    $roles = Role::find(2);
+    return $roles->users()->get();
+});
+
+Route::get('/dashboard', function () {
+    return view('probando'); // Crea esta vista si no la tienes
+})->middleware('auth');
+
+
+Route::get('/recursos-b', [WelcomeController::class, 'index'])->name('welcome')->middleware('auth');

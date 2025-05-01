@@ -19,9 +19,13 @@ class LoginController extends Controller
         $credentials = $request->only('user', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            $user = Auth::user()->load('person');
+            /*dd($user->person->name); */
+            $request->session()->put('name', $user->person->name); // Asumiendo que el atributo del nombre en Persona es 'nombre'
+            /*  $request->session()->put('user', Auth::user()->name);  */
+            return redirect()->intended('/recursos-b');
         } else {
-            return back()->withErrors(['user' => 'Credenciales incorrectos']);
+            return back()->withErrors(['user' => 'Credenciales incorrectos.']);
         }
     }
 

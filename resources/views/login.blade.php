@@ -36,10 +36,15 @@
                 </div>
                 <legend>Ingresa a Recursos Bi</legend>
                 @error('user')
-                <div class="form__validation ">
-                    <span class="error text-red form__messege form__validation-messege">{{ $message }}</span>
+                <div class="alert alert-danger">
+                    {{ $message }}
                 </div>
                 @enderror
+                @if (session('alert-success'))
+                <div class="alert alert-success">
+                    {{ session('alert-success') }}
+                </div>
+                @endif
                 <div class="form__item">
                     <label for="" class="form__label">Usuario</label>
                     <div class="input-group ">
