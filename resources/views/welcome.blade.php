@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="./css/components/_top-bar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
- 
+
 </head>
 
 <body class="h-100 d-flex flex-column">
-<x-top-bar></x-top-bar>
-<x-header></x-header>
+    <x-top-bar></x-top-bar>
+    <x-header></x-header>
 
+    
     <main class="flex__grow-2">
         <div id="carouselExampleCaptions" class="carousel slide h-75" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -61,9 +62,9 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-     
+
     </main>
-   <x-footer></x-footer>
+    <x-footer></x-footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
