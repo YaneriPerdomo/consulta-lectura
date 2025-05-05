@@ -6,6 +6,14 @@
     margin: 1rem;
 }
 
+label{
+    margin-bottom: 0.3rem;
+}
+
+legend{
+    margin:0rem;
+}
+
 
 
 .form--create-account,

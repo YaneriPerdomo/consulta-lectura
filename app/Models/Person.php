@@ -26,6 +26,8 @@ class Person extends Model
         return $this->belongsTo(User::class, 'user_id'); // 'user_id' es la clave foránea en esta tabla
     }
 
-    
+    public function avatar(){
+        return $this->belongsTo(Avatar::class,'avatar_id'); 
+    }
 
 }

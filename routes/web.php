@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/recursos-b', [WelcomeController::class, 'index'])
 ->middleware(['auth', CheckEmployeeRole::class]);
 
-Route::get('/profile', [UserConfigurationController::class, 'index'])
-->middleware(['auth', CheckEmployeeRole::class]);
+Route::get('/configuracion', [UserConfigurationController::class, 'index'])
+->middleware(['auth', CheckEmployeeRole::class])->name('configuration');
 
 
 

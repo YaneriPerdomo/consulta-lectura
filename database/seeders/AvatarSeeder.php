@@ -31,10 +31,10 @@ class AvatarSeeder extends Seeder
                 'img' => 'dinosaur'
             ],
             [
-                'img' => 'young-snow-f'
+                'img' => 'young-snow-m'
             ],
             [
-                'img' => 'young-snow-m'
+                'img' => 'young-snow-f'
             ]
         ]);
     }

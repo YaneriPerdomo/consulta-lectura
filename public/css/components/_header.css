@@ -5,3 +5,7 @@ header {
 .header__search {
     width: clamp(200px, 20vw, 350px);
 }
+
+.top-bar__avatar-img{
+    width: 40px;
+}
