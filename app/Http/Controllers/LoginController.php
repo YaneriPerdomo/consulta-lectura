@@ -21,22 +21,10 @@ class LoginController extends Controller
             $request->session()->regenerate();
             if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3){
                 $user = Auth::user()->load('person');
-                /*dd($user->person->name); */
                 $request->session()->put('name', $user->person->name);  
-                /*  $request->session()->put('user', Auth::user()->name); 
-
-                 @if (Auth::user()->person)
-                    {{ Auth::user()->person->name }}
-                @else
-                    {{ Auth::user()->name ?? 'Nombre no disponible' }} {{-- Fallback al nombre del usuario si no hay persona --}}
-                @endif
-
-                    @auth
-                    @if (Auth::user() && Auth::user()->role_id != 1)
-                        {{session('name', 'Nombre no disponible') }}
-                    @endif
-                @endauth
-                */
+                /* $user = User::with(['person.avatar'])->find(Auth::id());
+        
+         Auth::setUser($user); */
             }
             return redirect()->intended('/recursos-b');
         } else {

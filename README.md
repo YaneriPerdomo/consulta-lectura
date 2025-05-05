@@ -1,4 +1,4 @@
-# ** Aplicación web para el préstamo de recursos (libros, cómics, etc.) en modo híbrido para una biblioteca. **
+# **Aplicación web para el préstamo de recursos (libros, cómics, etc.) en modo híbrido para una biblioteca.**
 
 **Esta aplicación web está diseñada para modernizar la tarea de préstamos de una biblioteca, combinando lo 
 digital con lo físico (modalidad híbrida).** Permitirá a las personas buscar recursos fisicos tales como comics, libros, ect; por supuesto,  disponibles y, al mismo tiempo, 

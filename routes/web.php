@@ -3,42 +3,45 @@
 use App\Http\Controllers\CreateAccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserConfigurationController;
+use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\CheckEmployeeRole;
+use App\Http\Middleware\CheckUserRole;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/recursos-b', [WelcomeController::class, 'index'])
-->middleware(['auth', CheckEmployeeRole::class]);
-
-Route::get('/configuracion', [UserConfigurationController::class, 'index'])
-->middleware(['auth', CheckEmployeeRole::class])->name('configuration');
-
-
-
+/*Pagina principal */
 Route::get('/recursos-b', [WelcomeController::class, 'index'])->name('welcome');
 
-Route::get('/iniciar-sesion', [LoginController::class, 'index'])->name('login');
-Route::post('/iniciar-sesion', [LoginController::class, 'login']);
-Route::get('/registrarte', [CreateAccountController::class, 'index'])->name('create-account');
-Route::post('/registrarte', [CreateAccountController::class, 'store'])->name('create-account');
+/*Pagina principal pero tomando en cuenta la autenticacion */
+Route::get('/recursos-b', [WelcomeController::class, 'index'])
+    ->middleware(['auth']);
 
+/*Todos los metodos necesarios para la creacion de cuenta del usuario*/
+Route::controller(CreateAccountController::class)->group(function () {
+    Route::get('/registrarte', 'index')->name('create-account');
+    Route::post('/registrarte', 'store')->name('create-account');
+});
 
-Route::post('/logout', [LoginController::class, 'logout']);
+/*Todos los metodos necesarios para el login para cualquier rol (Admin, empleado y usuario) */
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/iniciar-sesion', 'index')->name('login');
+    Route::post('/iniciar-sesion', 'login');
+    Route::post('/logout', 'logout');
+});
 
-Route::get('/create-rol', [RoleController::class, 'index']);
-Route::get('/create-account', [UserController::class, 'index']);
+/* Todos los metodos necesarios para la configuracion del autenticado */
+Route::controller(ConfigurationController::class)->group((function () {
+    Route::get('/configuracion',  'index')->middleware(['auth', CheckUserRole::class])->name('configuration');
+    Route::put('/configuracion-actualizar-datos',  'update');
+    Route::put('/configuracion-cambiar-clave',  'updatePassword')->name('config-changes-password');
+}));
+
 
 
 Route::get('/tambien', function () {
     $roles = Role::find(2);
     return $roles->users()->get();
 });
-
-Route::get('/dashboard', function () {
-    return view('probando'); // Crea esta vista si no la tienes
-})->middleware('auth');
 

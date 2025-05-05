@@ -58,6 +58,7 @@
                 </div>
                 <br>
                 <div class="form__item">
+                    
                     <label for="" class="form__label">Contraseña</label>
                     <div class="input-group ">
                         <span class="form__icon input-group-text" id="basic-addon1"><i class="bi bi-search "></i></span>

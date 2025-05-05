@@ -2,7 +2,7 @@
     <div class="container-xl top-bar__content">
         @auth
         <div class="top-bar__avatar">
-            <img src="@if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)..@else.@endif/img/avatares/{{ Auth::user()->person->avatar->img}}.png" class="top-bar__avatar-img" alt="">
+            <img src="@if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)..@else.@endif/img/avatares/{{ Auth::user()->person->avatar->img }}.png" class="top-bar__avatar-img" alt="">
         </div>
         <div class="dropdown">
             <button class="button text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -10,7 +10,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Perfil</a></li>
-                <li><a class="dropdown-item" href="{{ route('configuration') }}">Configuracion</a></li>
+                <li><a class="dropdown-item" href="/configuracion">Configuracion</a></li>
                 <hr>
                 <li><a class="dropdown-item" href="#">Historial</a></li>
                 <li><a class="dropdown-item" href="#">Favoritos</a></li>
@@ -30,6 +30,5 @@
             <a href="{{ route('login') }}" class="header__link text-decoration-none text-white">Inicia Sesion</a>
         </button>
         @endauth
-
     </div>
 </div>
