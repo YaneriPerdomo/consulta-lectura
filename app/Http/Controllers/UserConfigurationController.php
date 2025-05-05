@@ -12,7 +12,7 @@ class UserConfigurationController extends Controller
     public function index(){
         /*
              Auth::user()->fresh();
-        Auth::user()->person->fresh();
+            Auth::user()->person->fresh();
          */
         $user_id = Auth::user()->user_id;
         $data_user = User::find($user_id);
