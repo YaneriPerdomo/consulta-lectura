@@ -3,6 +3,7 @@
 use App\Http\Controllers\CreateAccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserConfigurationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\CheckEmployeeRole;
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/recursos-b', [WelcomeController::class, 'index'])
 ->middleware(['auth', CheckEmployeeRole::class]);
+
+Route::get('/profile', [UserConfigurationController::class, 'index'])
+->middleware(['auth', CheckEmployeeRole::class]);
+
 
 
 Route::get('/recursos-b', [WelcomeController::class, 'index'])->name('welcome');

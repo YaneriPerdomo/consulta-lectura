@@ -2,6 +2,12 @@
     background-color: var(--color-blue) !important;
 }
 
+
+.button--color-red {
+    background-color: var(--color-red) !important;
+}
+
+
 .button {
     padding: 0.5rem 1rem;
     color: white;

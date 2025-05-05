@@ -19,10 +19,25 @@ class LoginController extends Controller
         $credentials = $request->only('user', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $user = Auth::user()->load('person');
-            /*dd($user->person->name); */
-            $request->session()->put('name', $user->person->name); // Asumiendo que el atributo del nombre en Persona es 'nombre'
-            /*  $request->session()->put('user', Auth::user()->name);  */
+            if(Auth::user()->role_id == 2 || Auth::user()->role_id == 3){
+                $user = Auth::user()->load('person');
+                /*dd($user->person->name); */
+                $request->session()->put('name', $user->person->name);  
+                /*  $request->session()->put('user', Auth::user()->name); 
+
+                 @if (Auth::user()->person)
+                    {{ Auth::user()->person->name }}
+                @else
+                    {{ Auth::user()->name ?? 'Nombre no disponible' }} {{-- Fallback al nombre del usuario si no hay persona --}}
+                @endif
+
+                    @auth
+                    @if (Auth::user() && Auth::user()->role_id != 1)
+                        {{session('name', 'Nombre no disponible') }}
+                    @endif
+                @endauth
+                */
+            }
             return redirect()->intended('/recursos-b');
         } else {
             return back()->withErrors(['user' => 'Credenciales incorrectos.']);

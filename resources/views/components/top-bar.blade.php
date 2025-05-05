@@ -7,7 +7,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Perfil</a></li>
-                <li><a class="dropdown-item" href="#">Configuracion</a></li>
+                <li><a class="dropdown-item" href="/user/profile">Configuracion</a></li>
                 <hr>
                 <li><a class="dropdown-item" href="#">Historial</a></li>
                 <li><a class="dropdown-item" href="#">Favoritos</a></li>

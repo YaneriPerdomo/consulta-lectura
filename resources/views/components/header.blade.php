@@ -2,8 +2,6 @@
     <div class="container-xl flex-full__justify-content-between">
         <div class="header__logo">
             <div class="header__content">
-                <img src="" alt="" class="header__img">
-                logo
             </div>
         </div>
         <div class="header__search">
