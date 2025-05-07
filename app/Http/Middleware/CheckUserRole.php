@@ -19,10 +19,8 @@ class CheckUserRole
        
         if (Auth::check() && Auth::user()->role_id == '2' /*Rol usuario*/ ) {
             return $next($request);
-        }/*else{
-            return redirect('/login');
-        } */
+        }
 
-        abort(403, 'Acceso no autorizado. Se requiere rol de empleado.');
+        abort(403, 'Acceso no autorizado');
     }
 }

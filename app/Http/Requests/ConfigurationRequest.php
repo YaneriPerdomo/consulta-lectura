@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-/*Clase de solicitud de formulario llamado create cuenta */
-class CreateAccountRequest extends FormRequest
+class ConfigurationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +21,21 @@ class CreateAccountRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
-        return [
+    {   
+        $roles = [
             'user' => 'required|string|max:55',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|min:8|confirmed',
-            'password_confirmation' => 'required',
-            'name_lastname' => 'string|max:100',
-            'cedula' => 'required|integer|unique:persons',
-            'number' => 'nullable|integer|min:0|max:999999',
+            'email' => 'required|email',
         ];
+        if (Auth::user()->role_id == 2) {
+            $roles = array_merge($roles, [
+                'name_lastname' => 'string|max:100',
+                'cedula' => 'required|integer',
+                'number' => 'nullable|min:0|max:999999|regex:/^\+[0-9]+$/',
+            ]);
+        }else{
+        }
+
+        return $roles;
     }
 
     public function messages()
@@ -41,20 +46,13 @@ class CreateAccountRequest extends FormRequest
             'user.max' => 'El campo :attribute no debe exceder los :max caracteres.',
             'email.required' => 'El campo :attribute es obligatorio.',
             'email.email' => 'El campo :attribute debe tener un formato válido.',
-            'email.unique' => 'El :attribute ya está registrado.',
-            'password.required' => 'El campo Contraseña es obligatorio.',
-            'password.min' => 'El campo Contraseña debe tener al menos :min caracteres.',
-            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
-            'password_confirmation.required' => 'El campo :attribute es obligatorio.',
             'name_lastname.string' => 'El campo :attribute debe ser una cadena de texto.',
             'cedula.required' => 'El campo :attribute es obligatorio.',
             'cedula.integer' => 'El campo :attribute debe contener solo números enteros.',
-            'cedula.unique' => 'La :attribute ya está registrada.',
-            'number.integer' => 'El campo :attribute debe contener solo números enteros.',
-
+            'number.regex' => 'El campo :attribute debe tener un formato valido.',
         ];
     }
-    public function  attributes()
+    public function attributes()
     {
         return [
             'user' => 'Usuario',

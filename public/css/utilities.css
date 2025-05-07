@@ -14,6 +14,14 @@
     flex-wrap: wrap;
 }
 
+.flex-full__justify-aligh-start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
 .flex-full__justify-content-end{
     display: flex;
     justify-content: end;

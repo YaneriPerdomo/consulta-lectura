@@ -28,19 +28,16 @@
                 Administra tu perfil
             </p>
             </div>
-            <form action="/configuracion-actualizar-datos" class="form" method="post">
+            <form action="{{ route('configuration.update') }}" class="form" method="post">
                 @csrf
 
                 @method('PUT')
-
-        
 
                 @if (session('alert-success-update-data'))
                     <div class="alert alert-success">
                         {{ session('alert-success-update-data') }}
                     </div>
                 @endif
-
                 
                 <legend><b>Datos</b></legend>
                 <span><b>Actualiza tu información personal</b></span>
@@ -95,6 +92,24 @@
                             value="{{ $data_user->email}}">
                     </div>
                     @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form__item">
+                    <label for="number" class="form__label ">Numero</label>
+                    <div class="input-group ">
+                        <span class="form__icon input-group-text  @error ('number') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                        <input type="text" 
+                            id="number" 
+                            name="number" 
+                            class="form-control 
+                            @error ('number') is-invalid @enderror "
+                            placeholder="+584739997" aria-label="Username"
+                            aria-describedby="basic-addon1"
+                            autofocus
+                            value="{{ $data_person->number}}">
+                    </div>
+                    @error('number')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -205,13 +220,13 @@
                     Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, asegúrate de estar seguro.
                 </p>
                     <button class="delete-account__button button button--color-red" type="submit">
-                        <a href="/eliminar-cuenta" class="text-decoration-none text-white delete-account__link">
+                        <a href="{{ route('delete-account') }}" class="text-decoration-none text-white delete-account__link">
                             Eliminar mi cuenta
                         </a>
                     </button>
                          
                 </div>
-                <form action="/configuracion-cambiar-clave" class="form" method="post">
+                <form action="{{ route('configuration.password') }}" class="form" method="post">
                     
                     @csrf
 
@@ -233,6 +248,19 @@
                                 value="">
                         </div>
                         @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Confirmar contraseña</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text @error ('password_confirmation') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="password" name="password_confirmation" class="form-control @error ('password_confirmation') is-invalid @enderror "
+                                placeholder="*******" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                value="">
+                        </div>
+                        @error('password_confirmation')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

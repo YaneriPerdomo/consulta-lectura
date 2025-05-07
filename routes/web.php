@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CreateAccountController;
+use App\Http\Controllers\DeleteAccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ConfigurationController;
@@ -11,37 +12,43 @@ use App\Http\Middleware\CheckUserRole;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
-/*Pagina principal */
-Route::get('/recursos-b', [WelcomeController::class, 'index'])->name('welcome');
 
-/*Pagina principal pero tomando en cuenta la autenticacion */
+// Página principal
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+// Página principal (requiere autenticación)
 Route::get('/recursos-b', [WelcomeController::class, 'index'])
-    ->middleware(['auth']);
+    ->middleware(['auth'])
+    ->name('dashboard'); // Cambié el nombre a algo más descriptivo
 
-/*Todos los metodos necesarios para la creacion de cuenta del usuario*/
+// Rutas para la creación de cuenta
 Route::controller(CreateAccountController::class)->group(function () {
-    Route::get('/registrarte', 'index')->name('create-account');
-    Route::post('/registrarte', 'store')->name('create-account');
+    Route::get('/registrarte', 'index')->name('register');  
+    Route::post('/registrarte', 'store')->name('register.store');  
 });
 
-/*Todos los metodos necesarios para el login para cualquier rol (Admin, empleado y usuario) */
+// Rutas para la autenticación (login y logout)
 Route::controller(LoginController::class)->group(function () {
     Route::get('/iniciar-sesion', 'index')->name('login');
-    Route::post('/iniciar-sesion', 'login');
-    Route::post('/logout', 'logout');
+    Route::post('/iniciar-sesion', 'attempt')->name('login.attempt');  
+    Route::post('/logout', 'logout')->name('logout');
 });
 
-/* Todos los metodos necesarios para la configuracion del autenticado */
-Route::controller(ConfigurationController::class)->group((function () {
-    Route::get('/configuracion',  'index')->middleware(['auth', CheckUserRole::class])->name('configuration');
-    Route::put('/configuracion-actualizar-datos',  'update');
-    Route::put('/configuracion-cambiar-clave',  'updatePassword')->name('config-changes-password');
-}));
-
-
-
-Route::get('/tambien', function () {
-    $roles = Role::find(2);
-    return $roles->users()->get();
+// Rutas para la configuración del usuario autenticado
+Route::controller(ConfigurationController::class)->middleware(['auth'])->group(function () {
+    Route::get('/configuracion', 'index')->name('configuration.index');
+    Route::put('/configuracion/actualizar-datos', 'update')->name('configuration.update');  
+    Route::put('/configuracion/cambiar-clave', 'updatePassword')->name('configuration.password');  
 });
 
+// Rutas para la configuración del usuario autenticado
+Route::controller(ConfigurationController::class)->middleware(['auth'])->group(function () {
+    Route::get('/configuracion', 'index')->name('configuration');
+    Route::put('/configuracion/actualizar-datos', 'update')->name('configuration.update');  
+    Route::put('/configuracion/cambiar-clave', 'updatePassword')->name('configuration.password');  
+});
+ 
+Route::controller(DeleteAccountController::class)->middleware(['auth', CheckUserRole::class, CheckEmployeeRole::class])->group(function () {
+    Route::get('/eliminar-cuenta', 'index')->name('delete-account');;  
+});
+ 

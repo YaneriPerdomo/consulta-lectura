@@ -28,7 +28,7 @@
                 @csrf
                 <div class="flex-full__justify-content-center gap-3">
                     <span>¿No tienes una cuenta en Recursos Bi?</span>
-                    <a href="{{route('create-account')}}" class="text-decoration-none">
+                    <a href="{{route('register')}}" class="text-decoration-none">
                         <button class="button button--no-background text-blue" type="button">
                             Registrarte
                         </button>

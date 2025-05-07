@@ -1,0 +1,11 @@
+.card--delete-account {
+    min-width: 18rem;
+    max-width: 28rem;
+    border: solid 1px var(--color-red);
+}
+
+.card__message--delete-acount {
+    background: rgb(255, 187, 182);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}

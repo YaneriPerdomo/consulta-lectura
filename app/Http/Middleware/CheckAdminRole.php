@@ -7,7 +7,7 @@ use illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Asegúrate de usar esta importaciónuse Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckEmployeeRole
+class CheckAdminRole
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class CheckEmployeeRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role_id == '3' /*Rol empleado*/ ) {
+        if (Auth::check() && Auth::user()->role_id == '1' /*Rol Admin*/ ) {
             return $next($request);
         }
 
