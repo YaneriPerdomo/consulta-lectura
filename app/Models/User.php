@@ -64,5 +64,8 @@ class User extends Authenticatable
         return $this->hasOne(Person::class, 'user_id'); // 'user_id' es la clave foránea en la tabla 'personas'
     }
 
+    public function employer(){
+        return $this->hasOne(Employee::class,'user_id');
+    }
    
 }

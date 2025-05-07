@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Room extends Model
+{
+    protected $table = 'rooms';  
+    public $timestamps = false; 
+
+    protected $primaryKey = 'room_id'; 
+    protected $fillable = [ 
+        'room',
+        'description',
+    ];
+
+    public function employees(){
+        return $this->hasMany(Employee::class, 'room_id');
+    }
+}
