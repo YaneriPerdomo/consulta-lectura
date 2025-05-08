@@ -8,10 +8,10 @@
                     </div>
                     <div class="dropdown">
                         <button class="button text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->user }}
+                            Hola, {{ Auth::user()->user }}!
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Panel de control</a></li>
                             <li><a class="dropdown-item" href="{{ route('configuration') }}">Configuracion</a></li>
                             <hr>
                             <li><a class="dropdown-item" href="#">Historial</a></li>

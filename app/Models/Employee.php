@@ -29,4 +29,13 @@ class Employee extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
+    public function job(){
+        return $this->belongsTo(Job::class,'job_id');
+    }
+
+    
+    public function avatar(){
+        return $this->belongsTo(Avatar::class,'avatar_id'); 
+    }
+
 }

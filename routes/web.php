@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\AdminEmployeeController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CreateAccountController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteAccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Middleware\CheckAdminRole;
 use App\Http\Middleware\CheckEmployeeRole;
 use App\Http\Middleware\CheckUserRole;
 use App\Models\Role;
@@ -47,8 +51,18 @@ Route::controller(ConfigurationController::class)->middleware(['auth'])->group(f
     Route::put('/configuracion/actualizar-datos', 'update')->name('configuration.update');  
     Route::put('/configuracion/cambiar-clave', 'updatePassword')->name('configuration.password');  
 });
- 
+
 Route::controller(DeleteAccountController::class)->middleware(['auth', CheckUserRole::class, CheckEmployeeRole::class])->group(function () {
     Route::get('/eliminar-cuenta', 'index')->name('delete-account');;  
 });
+
+
+Route::get('panel-control', [DashboardController::class, 'index'])
+->middleware(['auth', CheckAdminRole::class])
+->name('dashboard');
+ 
+
+Route::get('usuario/create', [AdminEmployeeController::class, 'create'])
+->middleware(['auth', CheckAdminRole::class])
+->name('employee.create-account');
  

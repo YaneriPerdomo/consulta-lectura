@@ -22,6 +22,14 @@
     flex-wrap: wrap;
 }
 
+.flex-full__aligh-start{
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
 .flex-full__justify-content-end{
     display: flex;
     justify-content: end;

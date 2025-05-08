@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             AvatarSeeder::class,
             RolSeeder::class,
             UserSeeder::class,
-            IdentityCardSeeder::class,          
+            IdentityCardSeeder::class,      
+            JobSeeder::class,    
         ]);
     }
 }

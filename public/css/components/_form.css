@@ -17,9 +17,9 @@ legend{
 
 
 .form--create-account,
-.form--login {
-    max-width: 700px;
-    min-width: 200px;
+.form--login, 
+.form--employee {
+    width: clamp(700px, 30vw, 300px);
 }
 
 .form__item {

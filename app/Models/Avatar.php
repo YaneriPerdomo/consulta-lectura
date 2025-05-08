@@ -18,4 +18,8 @@ class Avatar extends Model
     public function persons(){
         return $this->hasMany(Person::class, 'avatar_id');
     }
+
+    public function employees(){
+        return $this->hasMany(Employee::class, 'employee_id');
+    }
 }
