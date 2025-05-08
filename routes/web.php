@@ -62,7 +62,13 @@ Route::get('panel-control', [DashboardController::class, 'index'])
 ->name('dashboard');
  
 
-Route::get('usuario/create', [AdminEmployeeController::class, 'create'])
-->middleware(['auth', CheckAdminRole::class])
-->name('employee.create-account');
+
+Route::controller(AdminEmployeeController::class)->middleware(['auth', CheckAdminRole::class])->group(function(){
+    Route::post('usuarios/create', 'store')->middleware(['auth', CheckAdminRole::class])->name('employee.store');
+    Route::get('usuarios/create',  'create')->middleware(['auth', CheckAdminRole::class])->name('employee.create-account');
+    Route::get('usuarios/{usuario}/editar', 'edit')->middleware(['auth', CheckAdminRole::class])->name('');
+    Route::put('usuarios/{usuario}/editar', 'update')->middleware(['auth', CheckAdminRole::class])->name('')->name('employee.update');
+});
+
+
  

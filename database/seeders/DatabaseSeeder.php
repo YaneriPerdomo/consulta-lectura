@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             RolSeeder::class,
             UserSeeder::class,
             IdentityCardSeeder::class,      
-            JobSeeder::class,    
+            JobSeeder::class, 
+            RoomSeeder::class   
         ]);
     }
 }

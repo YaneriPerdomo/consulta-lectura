@@ -11,7 +11,9 @@ class Employee extends Model
     protected $fillable = [
         'identity_card_id',
         'user_id',
+        'avatar_id',
         'room_id',
+        'job_id',
         'name',
         'lastname',
         'cedula',

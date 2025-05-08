@@ -19,7 +19,7 @@
 
 <body class="h-100 d-flex flex-column">
     <x-top-bar></x-top-bar>
-    <x-header></x-header>
+    <x-header-admin></x-header>
     <main class="flex__grow-2">
         <article class="container-xxl h-100 ">
             <div class="px-3 mt-3">
