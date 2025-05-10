@@ -8,7 +8,7 @@ _**Ademas**, les cuento que en realidad esta idea nació de una propuesta que ca
 servicio comunitario en una  biblioteca_, sin embargo ~no llegamos a nada porque no teníamos tiempo~ 
 (éramos yo y 10 estudiantes de ingeniería).
 
-# Tecnología
+# Tecnologías
 
 ## Front-end
 * HTML
