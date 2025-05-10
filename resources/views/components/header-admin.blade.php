@@ -14,7 +14,7 @@
                     Recursos Humanos
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('employee.create-account') }}">Empleados</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.employee.index') }}">Empleados</a></li>
                     <li><a class="dropdown-item" href="{{ route('dashboard') }}">Cargos</a></li>
                 </ul>
             </div>
@@ -30,12 +30,12 @@
                     Recursos de lectura
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('configuration') }}">Libros</a></li>
-                    <li><a class="dropdown-item" href="{{ route('configuration') }}">Comics</a></li>
-                    <li><a class="dropdown-item" href="{{ route('configuration') }}">Editoriales</a></li>
-                    <li><a class="dropdown-item" href="{{ route('configuration') }}">Periódicos</a></li>
-                    <li><a class="dropdown-item" href="{{ route('configuration') }}">Revista</a></li>
-                    <li><a class="dropdown-item" href="{{ route('configuration') }}">Otros</a></li>
+                    <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Libros</a></li>
+                    <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Comics</a></li>
+                    <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Editoriales</a></li>
+                    <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Periódicos</a></li>
+                    <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Revista</a></li>
+                    <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Otros</a></li>
                 </ul>
             </div>
         </div>

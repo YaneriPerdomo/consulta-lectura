@@ -36,7 +36,7 @@
                         </button>
                     </a>
                 </div>
-                <legend>Ingresa a Recursos Bi</legend>
+                <h1><b>Ingresa a <i>Recursos Bi</i></b></h1>
                 <!--                 @if ($errors->any())
                 <div class="form__validation">
                     <ul class="form__validation-content">
@@ -46,132 +46,155 @@
                     </ul>
                 </div> @endif-->
 
-                <div class="form__avatar">
-                    <label for="" class="form__label">Selecciona un avatar</label>
-                    <p class="d-flex gap-2 form__avatar-content flex-wrap">
-                        <label for="1" data-checked="true">
-                            <input type="radio" id="1" name="avatar_id" value="1" checked class="input-radio--hidden ">
-                            <img src="./img/avatares/default.png" alt="" class="form__avatar-img">
-                        </label>
-                        <label for="2">
-                            <input type="radio" id="2" name="avatar_id" value="2" class="input-radio--hidden">
-                            <img src="./img/avatares/boy.png" alt="" class="form__avatar-img">
-                        </label>
-                        <label for="3">
-                            <input type="radio" id="3" name="avatar_id" value="3" class="input-radio--hidden">
-                            <img src="./img/avatares/girl.png" alt="" class="form__avatar-img">
-                        </label>
-                        <label for="4">
-                            <input type="radio" id="4" name="avatar_id" value="4" class="input-radio--hidden">
-                            <img src="./img/avatares/dinosaur.png" alt="" class="form__avatar-img">
-                        </label>
-                        <label for="5">
-                            <input type="radio" id="5" name="avatar_id" value="5" class="input-radio--hidden">
-                            <img src="./img/avatares/young-snow-m.png" alt="" class="form__avatar-img">
-                        </label>
-                        <label for="6">
-                            <input type="radio" id="6" name="avatar_id" value="6" class="input-radio--hidden">
-                            <img src="./img/avatares/young-snow-f.png" alt="" class="form__avatar-img">
-                        </label>
-                    </p>
-
-                </div>
-
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Nombre y apellido</label>
-                    <div class="input-group ">
-                        <span class="form__icon input-group-text @error ('name_lastname') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
-                        <input type="text" name="name_lastname" class="form-control @error ('name_lastname') is-invalid @enderror"
-                            placeholder="Yaneri Perdomo" aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            autofocus
-                            value="{{ old('name_lastname') }}">
+                <fieldset>
+                    <legend class="form__subtitle"><b>Datos Personales</b></legend>
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Nombre y apellido</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text @error ('name_lastname') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="text" name="name_lastname" class="form-control @error ('name_lastname') is-invalid @enderror"
+                                placeholder="Yaneri Perdomo" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                autofocus
+                                value="{{ old('name_lastname') }}">
+                        </div>
+                        @error('name_lastname')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('name_lastname')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Cédula de identidad</label>
-                    <div class="input-group ">
-                        <span class="form__icon input-group-text p-0 @error ('cedula') is-invalid--border @enderror" id="basic-addon1">
-                            <div class="input-group">
-                                <select id="type-indicator" name="identity_card_id" class="form-control form__select " required>
-                                    <option value="" selected disabled>Seleccione una opción</option>
-                                    <option value="1"> Venezolano cedulado (V) </option>
-                                    <option value="2"> Extranjero cedulado (E)</option>
-                                    <option value="3"> Pasaporte</option>
-                                </select>
-                            </div>
-                        </span>
-                        <input type="text" name="cedula" class="form-control @error ('cedula') is-invalid @enderror  "
-                            placeholder="87654321" aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            autofocus
-                            value="{{ old('cedula') }}">
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Cédula de identidad</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text p-0 @error ('cedula') is-invalid--border @enderror" id="basic-addon1">
+                                <div class="input-group">
+                                    <select id="type-indicator" name="identity_card_id" class="form-control form__select " required>
+                                        <option value="" selected disabled>Seleccione una opción</option>
+                                        <option value="1"> Venezolano cedulado (V) </option>
+                                        <option value="2"> Extranjero cedulado (E)</option>
+                                        <option value="3"> Pasaporte</option>
+                                    </select>
+                                </div>
+                            </span>
+                            <input type="text" name="cedula" class="form-control @error ('cedula') is-invalid @enderror  "
+                                placeholder="87654321" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                autofocus
+                                value="{{ old('cedula') }}">
+                        </div>
+                        @error('cedula')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('cedula')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Usuario</label>
-                    <div class="input-group ">
-                        <span class="form__icon input-group-text @error ('user') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
-                        <input type="text" name="user" class="form-control @error ('user') is-invalid @enderror"
-                            placeholder="Yane2024" aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            autofocus
-                            value="{{ old('user') }}">
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Correo electronico</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text  @error ('email') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="search" name="email" class="form-control @error ('email') is-invalid @enderror "
+                                placeholder="m@example.com" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                autofocus
+                                value="{{ old('email') }}">
+                        </div>
+                        @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('user')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Genero</label>
+                        <div class="input-group w-100">
+                            <span class="form__icon input-group-text p-0 w-100" id="basic-addon1">
+                                <div class="input-group">
+                                    <select id="room_id" name="room_id" class="form-control form__select " required>
+                                        <option value="" disabled selected>Seleccione una opcion</option>
+                                        <option value="1">F</option>
+                                        <option value="2">M</option>
+                                    </select>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+                
+                <fieldset>
+                    <legend class="form__subtitle" ><b>Datos de Usuario</b></legend>
 
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Correo electronico</label>
-                    <div class="input-group ">
-                        <span class="form__icon input-group-text  @error ('email') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
-                        <input type="search" name="email" class="form-control @error ('email') is-invalid @enderror "
-                            placeholder="m@example.com" aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            autofocus
-                            value="{{ old('email') }}">
+                <div class="form__item form__item--avatar">
+                        <label for="" class="form__label">Selecciona un avatar</label>
+                        <p class="d-flex gap-2 form__avatar-content flex-wrap">
+                            <label for="1" data-checked="true">
+                                <input type="radio" id="1" name="avatar_id" value="1" checked class="input-radio--hidden ">
+                                <img src="./img/avatares/default.png" alt="" class="form__avatar-img">
+                            </label>
+                            <label for="2">
+                                <input type="radio" id="2" name="avatar_id" value="2" class="input-radio--hidden">
+                                <img src="./img/avatares/boy.png" alt="" class="form__avatar-img">
+                            </label>
+                            <label for="3">
+                                <input type="radio" id="3" name="avatar_id" value="3" class="input-radio--hidden">
+                                <img src="./img/avatares/girl.png" alt="" class="form__avatar-img">
+                            </label>
+                            <label for="4">
+                                <input type="radio" id="4" name="avatar_id" value="4" class="input-radio--hidden">
+                                <img src="./img/avatares/dinosaur.png" alt="" class="form__avatar-img">
+                            </label>
+                            <label for="5">
+                                <input type="radio" id="5" name="avatar_id" value="5" class="input-radio--hidden">
+                                <img src="./img/avatares/young-snow-m.png" alt="" class="form__avatar-img">
+                            </label>
+                            <label for="6">
+                                <input type="radio" id="6" name="avatar_id" value="6" class="input-radio--hidden">
+                                <img src="./img/avatares/young-snow-f.png" alt="" class="form__avatar-img">
+                            </label>
+                        </p>
+    
                     </div>
-                    @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Contraseña</label>
-                    <div class="input-group ">
-                        <span class="form__icon input-group-text @error ('password') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
-                        <input type="password" name="password" class="form-control @error ('password') is-invalid @enderror"
-                            placeholder="*******" aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            value="">
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Usuario</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text @error ('user') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="text" name="user" class="form-control @error ('user') is-invalid @enderror"
+                                placeholder="Yane2024" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                autofocus
+                                value="{{ old('user') }}">
+                        </div>
+                        @error('user')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Confirmar contraseña</label>
-                    <div class="input-group ">
-                        <span class="form__icon input-group-text @error ('password_confirmation') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
-                        <input type="password" name="password_confirmation" class="form-control @error ('password_confirmation') is-invalid @enderror "
-                            placeholder="*******" aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            value="">
+    
+                    
+    
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Contraseña</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text @error ('password') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="password" name="password" class="form-control @error ('password') is-invalid @enderror"
+                                placeholder="*******" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                value="">
+                        </div>
+                        @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('password_confirmation')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
+    
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Confirmar contraseña</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text @error ('password_confirmation') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="password" name="password_confirmation" class="form-control @error ('password_confirmation') is-invalid @enderror "
+                                placeholder="*******" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                value="">
+                        </div>
+                        @error('password_confirmation')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+    
+                </fieldset>
                 <hr>
                 <div class="form__button w-100">
                     <button class="button button--color-blue w-100" type="submit">

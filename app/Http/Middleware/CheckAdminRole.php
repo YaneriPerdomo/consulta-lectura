@@ -16,7 +16,7 @@ class CheckAdminRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role_id == '1' /*Rol Admin*/ ) {
+        if (Auth::check() && Auth::user()->rol_id == '1' /*Rol Admin*/ ) {
             return $next($request);
         }
 

@@ -14,10 +14,10 @@ class Person extends Model
         'user_id',
         'avatar_id',
         'identity_card_id',
+        'gender_id',
         'name',    //ASIGNACION MASIVA
         'lastname',
         'cedula',
-        'email',
         'number',
     ];
 

@@ -29,7 +29,12 @@ class RolSeeder extends Seeder
             [
                 'rol' => 'Empleado',
                 'description' => 'Administra una sala específica.'
+            ],
+            [
+                'rol' => 'Moderador de comentarios',
+                'description' => 'Mantener un ambiente sano y respetuoso en las secciones de comentarios'
             ]
+            
         ]);
     }
 }

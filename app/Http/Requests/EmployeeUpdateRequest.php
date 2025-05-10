@@ -26,8 +26,8 @@ class EmployeeUpdateRequest extends FormRequest
             'user' => 'required|string|max:55',
             'email' => 'required|email',
             'name_lastname' => 'string|max:100',
-            'cedula' => 'required|integer|unique:persons',
-            'number' => 'nullable|integer|min:0|max:999999',
+            'cedula' => 'required|integer',
+            'number' => 'nullable|min:0|max:999999|regex:/^\+[0-9]+$/',
         ];
     }
 

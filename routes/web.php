@@ -45,29 +45,25 @@ Route::controller(ConfigurationController::class)->middleware(['auth'])->group(f
     Route::put('/configuracion/cambiar-clave', 'updatePassword')->name('configuration.password');  
 });
 
-// Rutas para la configuración del usuario autenticado
-Route::controller(ConfigurationController::class)->middleware(['auth'])->group(function () {
-    Route::get('/configuracion', 'index')->name('configuration');
-    Route::put('/configuracion/actualizar-datos', 'update')->name('configuration.update');  
-    Route::put('/configuracion/cambiar-clave', 'updatePassword')->name('configuration.password');  
-});
 
-Route::controller(DeleteAccountController::class)->middleware(['auth', CheckUserRole::class, CheckEmployeeRole::class])->group(function () {
-    Route::get('/eliminar-cuenta', 'index')->name('delete-account');;  
+
+Route::controller(DeleteAccountController::class)->middleware(['auth', CheckUserRole::class])->group(function () {
+    Route::get('/eliminar-cuenta', 'index')->name('delete-account.index');;  
 });
 
 
 Route::get('panel-control', [DashboardController::class, 'index'])
 ->middleware(['auth', CheckAdminRole::class])
 ->name('dashboard');
- 
-
-
+    
 Route::controller(AdminEmployeeController::class)->middleware(['auth', CheckAdminRole::class])->group(function(){
-    Route::post('usuarios/create', 'store')->middleware(['auth', CheckAdminRole::class])->name('employee.store');
-    Route::get('usuarios/create',  'create')->middleware(['auth', CheckAdminRole::class])->name('employee.create-account');
-    Route::get('usuarios/{usuario}/editar', 'edit')->middleware(['auth', CheckAdminRole::class])->name('');
-    Route::put('usuarios/{usuario}/editar', 'update')->middleware(['auth', CheckAdminRole::class])->name('')->name('employee.update');
+    Route::get('recursos-humanos/empleados', 'index')->middleware(['auth', CheckAdminRole::class])->name('admin.employee.index');
+    Route::post('recursos-humanos/empleado/crear', 'store')->middleware(['auth', CheckAdminRole::class])->name('admin.employee.store');
+    Route::get('recursos-humanos/empleado/crear',  'create')->middleware(['auth', CheckAdminRole::class])->name('admin.employee.create-account');
+    Route::get('recursos-humanos/empleado/{usuario}/editar', 'edit')->middleware(['auth', CheckAdminRole::class])->name('admin.employee.edit');
+    Route::put('recursos-humanos/empleado/{usuario}/editar', 'update')->middleware(['auth', CheckAdminRole::class])->name('')->name('admin.employee.update');
+    Route::put('recursos-humanos/empleado/{usuario}/cambiar-clave', 'updatePassword')->middleware(['auth', CheckAdminRole::class])->name('')->name('admin.employee.update-password');
+    Route::get('recursos-humanos/empleado/{usuario}/eliminar-cuenta', 'showDeleteAccount')->middleware(['auth', CheckAdminRole::class])->name('')->name('admin.employee.delete');
 });
 
 

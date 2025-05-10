@@ -96,6 +96,24 @@
                     @enderror
                 </div>
                 <div class="form__item">
+                    <label for="gender_id" class="form__label form__label--required">Genero</label>
+                    <div class="input-group w-100">
+                        <span class="form__icon input-group-text p-0 w-100" id="basic-addon1">
+                            <div class="input-group">
+                                <select id="gender_id" name="gender_id" class="form-control form__select " required>
+                                     <option value="" disabled>Seleccione una opción</option>
+                                    @if ($data_person)
+                                        <option value="1" @if($data_person->gender_id == "1") selected @endif> F </option>
+                                        <option value="2" @if($data_person->gender_id == "2") selected @endif> M</option>
+                                    @else
+                                        <option value=""> No se encontraron datos de persona </option>
+                                    @endif
+                                </select>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="form__item">
                     <label for="number" class="form__label ">Numero</label>
                     <div class="input-group ">
                         <span class="form__icon input-group-text  @error ('number') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
@@ -220,7 +238,7 @@
                     Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, asegúrate de estar seguro.
                 </p>
                     <button class="delete-account__button button button--color-red" type="submit">
-                        <a href="{{ route('delete-account') }}" class="text-decoration-none text-white delete-account__link">
+                        <a href="{{ route('delete-account.index') }}" class="text-decoration-none text-white delete-account__link">
                             Eliminar mi cuenta
                         </a>
                     </button>

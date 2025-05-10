@@ -14,10 +14,10 @@ class Employee extends Model
         'avatar_id',
         'room_id',
         'job_id',
+        'gender_id',
         'name',
         'lastname',
         'cedula',
-        'email',
         'number',
         'low_data'
     ];
@@ -38,6 +38,10 @@ class Employee extends Model
     
     public function avatar(){
         return $this->belongsTo(Avatar::class,'avatar_id'); 
+    }
+
+    public function gender(){
+        return $this->belongsTo(Gender::class,'gender_id'); 
     }
 
 }

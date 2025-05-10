@@ -17,7 +17,7 @@ class CheckUserRole
     public function handle(Request $request, Closure $next): Response
     {
        
-        if (Auth::check() && Auth::user()->role_id == '2' /*Rol usuario*/ ) {
+        if (Auth::check() && Auth::user()->rol_id == '2' /*Rol usuario*/ ) {
             return $next($request);
         }
 

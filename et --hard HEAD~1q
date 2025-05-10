@@ -1,0 +1,83 @@
+[33mcommit cdcb48898d1b28c9343b311016de9d23a2a65d26[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m)[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Thu May 8 12:14:42 2025 -0400
+
+    nuevo mensaje para el último commit
+
+[33mcommit b932035e3e1e2f4f28014468bec4a61e98898f0e[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Thu May 8 12:07:32 2025 -0400
+
+    Agregando la capacidad de crear empleados para el rol de administrador y actualizarlos, y más cambios pequeños.
+
+[33mcommit c827b5ce80523739ee94456dd62308c93d7b2492[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Wed May 7 20:53:53 2025 -0400
+
+    Agregando mas cambios
+
+[33mcommit 5579cf56595662bf96440557da4481c37e9183a9[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Wed May 7 16:57:04 2025 -0400
+
+    Agregando mas migraciones, modelos y un seeder
+
+[33mcommit 379d8319150449a76e6d4cd5dbfcc5125b02ad7e[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Wed May 7 09:00:42 2025 -0400
+
+    Agregando un cambio
+
+[33mcommit 9205ba5dd0d421be33893349d4c1e11fea76c7b1[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Wed May 7 08:26:52 2025 -0400
+
+    Agregando autenticación para el rol de administrador e implementar la opción de actualizar sus datos y entre otras cosas.
+
+[33mcommit ebbd52e142004b3daf4e15decc0a2f3cadb6c070[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Mon May 5 18:34:59 2025 -0400
+
+    Arreglando codigo
+
+[33mcommit d57438f81d599fce892df5b28992f577c226c4f7[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Sun May 4 22:27:11 2025 -0400
+
+    Algunos cambios para el README
+
+[33mcommit 8d4f71433828a962d631df3c713a6f6786bae95a[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Sun May 4 22:23:58 2025 -0400
+
+    Agregando el avatar en la parte superior del encabezado y arreglando el seed llamado AvatarSeed
+
+[33mcommit 451810ac253977599b11ec5ab5b2864842fc5d3e[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Sun May 4 20:49:37 2025 -0400
+
+    Agregando la vista de perfil del usuario con sus datos impresos en cada elemento HTML llamado entrada/input
+
+[33mcommit 55274c38487ec8d130baa7f6b6bf3d6dd2f40ace[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Sat May 3 20:38:42 2025 -0400
+
+    Agregando mas cambios
+
+[33mcommit 5670fadb63b096155316974dfcf4c82ef41e35bf[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Wed Apr 30 21:59:35 2025 -0400
+
+    Agregando relaciones de tablas y mejorando las vistas.
+
+[33mcommit 95a2a80f7085c32ac8aeaa88840ac45fc1357615[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Tue Apr 29 19:10:22 2025 -0400
+
+    Agregando migraciones y funcionalidad beta para iniciar sesión y crear una cuenta de usuario y mas
+
+[33mcommit 5a3cafb9907657a93a246838c109ef70a52c9426[m
+Author: Yaneri Perdomo <perdomopaolabarrios@gmail.com>
+Date:   Fri Apr 25 18:57:34 2025 -0400
+
+    Primer vistazo

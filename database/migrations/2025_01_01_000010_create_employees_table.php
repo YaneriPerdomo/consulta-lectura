@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id('employee_id');
+            $table->foreignId('gender_id')->nullable()->constrained('genders', 'gender_id');
             $table->foreignId('identity_card_id')->nullable()->constrained('identity_cards', 'identity_card_id')->onDelete('cascade');
             $table->foreignId('job_id')->nullable()->constrained('jobs', 'job_id')->onDelete('set null');
-            $table->foreignId('user_id')->nullable()->constrained('users', 'user_id')->onDelete('cascade');
             $table->foreignId('room_id')->nullable()->constrained('rooms', 'room_id')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users', 'user_id')->onDelete('cascade');
             $table->foreignId('avatar_id')->nullable()->constrained('avatars', 'avatar_id')/*->onDelete('cascade') */;
             $table->string('name', 55);
             $table->string('lastname', 55);
             $table->string('cedula', 10)->unique()->nullable();
-            $table->string('email', 255)->unique();
             $table->string('number', 13)->nullable()->unique();
             $table->dateTime('low_data')->nullable()->default(null);
             $table->timestamps(); 

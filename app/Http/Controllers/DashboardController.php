@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        switch (Auth::user()->role_id) {
+        switch (Auth::user()->rol_id) {
             case 1:
                 return view("admin.dashboard");                
             break;

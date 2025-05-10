@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'user_id',
-        'role_id',
+        'rol_id',
         'user',
         'name',
         'email',
@@ -55,7 +55,12 @@ class User extends Authenticatable
 
     public function rol()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsTo(Role::class, 'rol_id');
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class, 'gender_id');
     }
 
 
@@ -64,7 +69,7 @@ class User extends Authenticatable
         return $this->hasOne(Person::class, 'user_id'); // 'user_id' es la clave foránea en la tabla 'personas'
     }
 
-    public function employer(){
+    public function employee(){
         return $this->hasOne(Employee::class,'user_id');
     }
    

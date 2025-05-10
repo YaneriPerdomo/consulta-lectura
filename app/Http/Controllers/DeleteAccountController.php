@@ -8,5 +8,7 @@ class DeleteAccountController extends Controller
 {
     public function index(){
         return view('user.delete-account');
+
+        
     }
 }

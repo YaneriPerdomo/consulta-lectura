@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         // User::factory(10)->create();
 
        FacadesDB::table('users')->insert([
-            'role_id' => 1,
+            'rol_id' => 1,
             'user' => 'admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('123'),

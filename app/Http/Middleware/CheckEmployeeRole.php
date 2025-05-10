@@ -16,7 +16,7 @@ class CheckEmployeeRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role_id == '3' /*Rol empleado*/ ) {
+        if (Auth::check() && Auth::user()->rol_id == '3' /*Rol empleado*/ ) {
             return $next($request);
         }
 

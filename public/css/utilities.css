@@ -52,3 +52,7 @@
 .text-grey{
     color:var(--color-grey) !important;
 }
+
+.text--color-black{
+    color: var(--color-black) !important;
+}

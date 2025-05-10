@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConfirmPasswordRequest;
+use App\Http\Requests\CreateAccountRequest;
 use App\Http\Requests\CreateAccountUserEmployeeRequest;
 use App\Http\Requests\EmployeeUpdateRequest;
 use App\Models\Employee;
@@ -18,17 +20,25 @@ class AdminEmployeeController extends Controller
    public function index()
    {
 
+      $users = User::where('rol_id', 3)
+         ->with('employee')
+         ->orderBy('user', 'asc')
+         ->paginate(3);
+
+
+      return view('admin.human-resources.employee.show-all', ['users' => $users]);
    }
+
 
    public function create()
    {
 
       $jobs = Job::all();
       $rooms = Room::all();
-      return view("admin.create-employee", ['jobs' => $jobs, 'rooms' => $rooms]);
+      return view("admin.human-resources.employee.create", ['jobs' => $jobs, 'rooms' => $rooms]);
    }
 
-   public function store(CreateAccountUserEmployeeRequest $request)
+   public function store(Request $request)
    {
 
 
@@ -37,9 +47,9 @@ class AdminEmployeeController extends Controller
       try {
          FacadesDB::beginTransaction();
          $new_user = User::create([
-            'role_id' => 2,
+            'rol_id' => 3,
             'user' => $request->user,
-            'email' => $request->email,
+            'email' => $request->email ?? 'Nada',
             'password' => Hash::make($request->password)
          ]);
 
@@ -49,19 +59,21 @@ class AdminEmployeeController extends Controller
             'identity_card_id' => $request->identity_card_id,
             'room_id' => $request->room_id,
             'job_id' => $request->job_id,
+            'gender_id' => $request->gender_id,
             'cedula' => $request->cedula,
             'name' => $name_lastname[0],
             'lastname' => $name_lastname[1],
-            'email' => $request->email,
             'number' => $request->number
 
          ]);
+
+         $message_session = $request->gender_id == 1 ? 'La nuevo empleada ha sido registrado exitosamente.' : 'El nuevo empleado ha sido registrado exitosamente.';
          FacadesDB::commit();
          $request->session()->flash(
             'alert-success',
-            'Tu registro se ha completado. Ya puedes iniciar sesión en tu cuenta.'
+            $message_session
          );
-         return redirect('/usuario/create');
+         return redirect('/empleados');
       } catch (\Exception $ex) {
          FacadesDB::rollBack();
          throw $ex;
@@ -76,7 +88,7 @@ class AdminEmployeeController extends Controller
       $data_employee = Employee::where('user_id', $data_user->user_id)->first();
       $jobs = Job::all();
       $rooms = Room::all();
-      return view('admin.update-employee', [
+      return view('admin.human-resources.employee.edit', [
          'data_user' => $data_user,
          'data_employee' => $data_employee,
          'jobs' => $jobs,
@@ -108,9 +120,10 @@ class AdminEmployeeController extends Controller
             $data_employee->room_id == $request->room_id &&
             $data_employee->job_id == $request->job_id &&
             $data_employee->avatar_id == $request->avatar_id &&
-            $data_employee->number == $request->number
+            $data_employee->number == $request->number &&
+            $data_employee->gender_id == $request->gender_id
          ) {
-            return redirect('/usuarios/' . $data_user->user . '/editar');
+            return redirect('/empleado/' . $data_user->user . '/editar');
          } else {
 
             $data_user->update([
@@ -122,6 +135,7 @@ class AdminEmployeeController extends Controller
             $data_employee->save();
 
             $data_employee->update([
+               'gender_id' => $request->gender_id,
                'avatar_id' => $request->avatar_id,
                'identity_card_id' => $request->identity_card_id,
                'room_id' => $request->room_id,
@@ -134,14 +148,40 @@ class AdminEmployeeController extends Controller
 
             FacadesDB::commit();
 
-            $request->session()->flash('alert-success-update-data', 'Los datos se han actualizado.');
+            $request->session()->flash('alert-success-update-data', 'Los datos personales se han actualizado.');
 
-            return redirect('/usuarios/' . $request->user . '/editar');
+            return redirect('recursos-humanos/empleado/' . $request->user . '/editar');
          }
 
       } catch (\Exception $ex) {
          FacadesDB::rollBack();
          throw $ex;
       }
+   }
+
+   public function updatePassword(ConfirmPasswordRequest $request, $name_user)
+   {
+      $data_user = User::where('user', $name_user)->first();
+      $data_user->update([
+         'password' => Hash::make($request->password),
+      ]);
+
+      $request->session()->flash(
+         'alert-success-update-password',
+         '¡Contraseña actualizada con éxito!'
+      );
+
+      return redirect('recursos-humanos/empleado/' . $data_user->user . '/editar');
+   }
+
+   public function showDeleteAccount()
+   {
+      return view('admin.human-resources.employee.delete');
+   }
+
+   //show viw delete-account employee
+   public function destroy(ConfirmPasswordRequest $request, $name_user)
+   {
+
    }
 }

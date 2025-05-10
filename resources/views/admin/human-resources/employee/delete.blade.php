@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Eliminar cuenta | Biblioteca B</title>
-    <link rel="stylesheet" href="../css/utilities.css">
-    <link rel="stylesheet" href="../css/layouts/_base.css">
-    <link rel="stylesheet" href="../css/components/_button.css">
-    <link rel="stylesheet" href="../css/components/_footer.css">
-    <link rel="stylesheet" href="../css/components/_form.css">
-    <link rel="stylesheet" href="../css/components/_header.css">
-    <link rel="stylesheet" href="../css/components/_card.css">
-    <link rel="stylesheet" href="../css/components/_input.css">
-    <link rel="stylesheet" href="../css/components/_top-bar.css">
+    <link rel="stylesheet" href="../../css/utilities.css">
+    <link rel="stylesheet" href="../../css/layouts/_base.css">
+    <link rel="stylesheet" href="../../css/components/_button.css">
+    <link rel="stylesheet" href="../../css/components/_footer.css">
+    <link rel="stylesheet" href="../../css/components/_form.css">
+    <link rel="stylesheet" href="../../css/components/_header.css">
+    <link rel="stylesheet" href="../../css/components/_card.css">
+    <link rel="stylesheet" href="../../css/components/_input.css">
+    <link rel="stylesheet" href="../../css/components/_top-bar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -22,7 +22,7 @@
 
 <body class="h-100 d-flex flex-column">
     <x-top-bar></x-top-bar>
-    <x-header></x-header>
+    <x-header-admin relativePath="../"></x-header-admin>
     <main class="flex__grow-2">
         <article class="container-xxl h-100 flex-full__justify-content-center ">
             <div class="card card--delete-account p-3">
@@ -47,7 +47,7 @@
                 </div>
                 <hr>
                 <div class="card__button-option flex-full__justify-content-between ">
-                    <a href="{{ route('configuration.index') }}" class="text-decoration-white card__link-cancel">
+                    <a href="{{ route('admin.employee.index') }}" class="text-decoration-white card__link-cancel">
                         <button class="button button--color-grey" type="submit">
                             Cancelar
                         </button>

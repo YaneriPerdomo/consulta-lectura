@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -19,10 +19,10 @@ class LoginController extends Controller
         $credentials = $request->only('user', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if(Auth::user()->role_id == 2 ){ //Rol de usuario principalmente para guardar la relación de la tabla de personas con la sesión
+            if (Auth::user()->rol_id == 2) { //Rol de usuario principalmente para guardar la relación de la tabla de personas con la sesión
                 $user = Auth::user()->load('person');
                 $request->session()->put('name', $user->person->name);
-            }else if(Auth::user()->role_id == 3){
+            } else if (Auth::user()->rol_id == 3) {
 
             }
             return redirect()->intended('/recursos-b');

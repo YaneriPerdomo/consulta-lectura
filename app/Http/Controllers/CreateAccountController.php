@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateAccountUserEmployeeRequest;
+use App\Http\Requests\CreateAccountRequest;
 use App\Models\Person;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
@@ -26,7 +26,7 @@ class CreateAccountController extends Controller
       try {
          FacadesDB::beginTransaction();
          $new_user = User::create([
-            'role_id' => 2,
+            'rol_id' => 2,
             'user' => $request->user,
             'email' => $request->email,
             'password' => Hash::make($request->password)
@@ -36,10 +36,10 @@ class CreateAccountController extends Controller
             'user_id' => $new_user->user_id,
             'avatar_id' => $request->avatar_id,
             'identity_card_id' => $request->identity_card_id,
+            'gender_id' => $request->gender_id,
             'name' => $name_lastname[0],
             'lastname' => $name_lastname[1],
             'cedula' => $request->cedula,
-            'email' => $request->email,
             'number' => $request->number
 
          ]);

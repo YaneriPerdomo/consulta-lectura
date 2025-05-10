@@ -5,23 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Configuration | Biblioteca B</title>
-    <link rel="stylesheet" href="../../css/utilities.css">
-    <link rel="stylesheet" href="../../css/layouts/_base.css">
-    <link rel="stylesheet" href="../../css/components/_button.css">
-    <link rel="stylesheet" href="../../css/components/_footer.css">
-    <link rel="stylesheet" href="../../css/components/_form.css">
-    <link rel="stylesheet" href="../../css/components/_header.css">
-    <link rel="stylesheet" href="../../css/components/_input.css">
-    <link rel="stylesheet" href="../../css/components/_top-bar.css">
+    <link rel="stylesheet" href="../../../css/utilities.css">
+    <link rel="stylesheet" href="../../../css/layouts/_base.css">
+    <link rel="stylesheet" href="../../../css/components/_button.css">
+    <link rel="stylesheet" href="../../../css/components/_footer.css">
+    <link rel="stylesheet" href="../../../css/components/_form.css">
+    <link rel="stylesheet" href="../../../css/components/_header.css">
+    <link rel="stylesheet" href="../../../css/components/_input.css">
+    <link rel="stylesheet" href="../../../css/components/_top-bar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+    <style>
+        .modal-header--bg-red{
+            background: var(--color-red);
+            color:white;
+        }
+    </style>
 </head>
 
 <body class="h-100 d-flex flex-column">
-    <x-top-bar></x-top-bar>
+    <x-top-bar relativePath="../../../"></x-top-bar>
     <x-header-admin></x-header>
     <main class="flex__grow-2 flex-full__aligh-start">
-        <form action="{{ route('employee.update', $data_user->user) }}" method="post" class="form form--employee">
+        <form action="{{ route('admin.employee.update', $data_user->user) }}" method="post" class="form form--employee">
             @csrf
 
             @method('PUT')
@@ -78,6 +85,38 @@
                     @error('cedula')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                </div>
+                <div class="form__item">
+                    <label for="" class="form__label form__label--required">Correo electronico</label>
+                    <div class="input-group ">
+                        <span class="form__icon input-group-text  @error ('email') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                        <input type="search" name="email" class="form-control @error ('email') is-invalid @enderror "
+                            placeholder="m@example.com" aria-label="Username"
+                            aria-describedby="basic-addon1"
+                            autofocus
+                            value="{{ $data_user->email }}">
+                    </div>
+                    @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form__item">
+                    <label for="gender_id" class="form__label form__label--required">Genero</label>
+                    <div class="input-group w-100">
+                        <span class="form__icon input-group-text p-0 w-100" id="basic-addon1">
+                            <div class="input-group">
+                                <select id="gender_id" name="gender_id" class="form-control form__select " required>
+                                     <option value="" disabled>Seleccione una opción</option>
+                                    @if ($data_employee)
+                                        <option value="1" @if($data_employee->gender_id == "1") selected @endif> F </option>
+                                        <option value="2" @if($data_employee->gender_id == "2") selected @endif> M</option>
+                                    @else
+                                        <option value=""> No se encontraron datos de persona </option>
+                                    @endif
+                                </select>
+                            </div>
+                        </span>
+                    </div>
                 </div>
                 <div class="form__item">
                     <label for="" class="form__label form__label--required">Cargo</label>
@@ -229,34 +268,103 @@
                     @enderror
                 </div>
         
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Correo electronico</label>
-                    <div class="input-group ">
-                        <span class="form__icon input-group-text  @error ('email') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
-                        <input type="search" name="email" class="form-control @error ('email') is-invalid @enderror "
-                            placeholder="m@example.com" aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            autofocus
-                            value="{{ $data_user->email }}">
-                    </div>
-                    @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+               
                 <div class="form__item text-center">
-                    <span>Establecer nueva contraseña</span>
+                    <button type="button" class=" button--update-password button text--color-black" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <span  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                              Establecer nueva contraseña
+                        </span>
+                       
+                    </button>
                 </div>
             </fieldset>
             <hr class="form__line">
             <div class="form__option-button form__button w-100">
-                <button class="button button--color-blue w-100" type="submit">
-                    Actualizar
+                <button class="button button--color-blue w-100 " type="submit">
+                    Actualizar cuenta
                 </button>
             </div>
         </form>
     </main>
     
+ 
+<script>
     
+    document.addEventListener('DOMContentLoaded', e => {
+          $alert_changes_password = document.querySelector('.alert-success--changes-password') ?? null;
+          $alert_changes_password_input = document.querySelector('.alert-danger--password') ?? null;
+          $alert_changes_password_confirmation_input = document.querySelector('.alert-danger--password_confirmation') ?? null;
+
+            if($alert_changes_password_input != null || $alert_changes_password_confirmation_input != null
+            || $alert_changes_password != null){
+                console.info('desde la alert de contreseña');
+                var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+                myModal.show();
+            };
+
+         
+          
+    });
+</script>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <form action="{{ route('admin.employee.update-password', $data_user->user) }}" class="" method="post">
+      <div class="modal-header modal-header--bg-red flex-column">
+         @csrf
+                    @method('PUT')
+                    <legend><b>Seguridad</b></legend>
+                    <div class="w-100">
+                         <span>Actualiza tu contraseña</span>
+                    </div>
+                  
+      </div>
+      <div class="modal-body">
+          @if (session('alert-success-update-password'))
+                    <div class="alert alert-success alert-success--changes-password">
+                        {{ session('alert-success-update-password') }}
+                    </div>
+                    @endif
+         <div class="form__item">
+                        <label for="" class="form__label form__label--required">Contraseña</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text @error ('password') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="password" name="password" class="form-control @error ('password') is-invalid @enderror"
+                                placeholder="*******" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                value="">
+                        </div>
+                        @error('password')
+                        <div class="alert alert-danger alert-danger--password">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form__item">
+                        <label for="" class="form__label form__label--required">Confirmar contraseña</label>
+                        <div class="input-group ">
+                            <span class="form__icon input-group-text @error ('password_confirmation') is-invalid--border @enderror" id="basic-addon1"><i class="bi bi-search "></i></span>
+                            <input type="password" name="password_confirmation" class="form-control @error ('password_confirmation') is-invalid @enderror "
+                                placeholder="*******" aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                value="">
+                        </div>
+                        @error('password_confirmation')
+                        <div class="alert alert-danger alert-danger--password-confirmation">{{ $message }}</div>
+                        @enderror
+                    </div>
+      </div>
+      <div class="modal-footer">
+         <div class="form__button flex-full__justify-content-end gap-2">
+             <button type="button" class="button button--color-grey" data-bs-dismiss="modal">Cerrar</button>
+                        <button class="button button--color-red" type="submit">
+                            Guardar cambios
+                        </button>
+                    </div> 
+      </div>
+                        </form>
+    </div>
+  </div>
+</div>
 <script>
      let $all_avatar_img = document.querySelectorAll(".form__avatar-content > label > img");
     

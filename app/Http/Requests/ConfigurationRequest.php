@@ -26,7 +26,7 @@ class ConfigurationRequest extends FormRequest
             'user' => 'required|string|max:55',
             'email' => 'required|email',
         ];
-        if (Auth::user()->role_id == 2) {
+        if (Auth::user()->rol_id == 2) {
             $roles = array_merge($roles, [
                 'name_lastname' => 'string|max:100',
                 'cedula' => 'required|integer',
