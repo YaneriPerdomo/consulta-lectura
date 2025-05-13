@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('cedula', 10)->unique()->nullable();
             $table->string('number', 13)->nullable()->unique();
             $table->dateTime('low_data')->nullable()->default(null);
+            $table->string('slug',  120)->nullable()->default(null);
             $table->timestamps(); 
         });
     }

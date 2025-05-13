@@ -6,7 +6,9 @@
             </a>
         </div>
         <div>
-            Usuario
+           <a href="{{ route('admin.user.index') }}"  class="text-decoration-none text-white">
+             Usuario
+           </a>
         </div>
         <div>
             <div class="dropdown">
@@ -15,13 +17,13 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('admin.employee.index') }}">Empleados</a></li>
-                    <li><a class="dropdown-item" href="{{ route('dashboard') }}">Cargos</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.job.index') }}">Cargos</a></li>
                 </ul>
             </div>
         </div>
         <div>
-            <a href="{{ route('dashboard') }}" class="text-decoration-none text-white">
-                Departamento
+            <a href="{{ route('admin.room.index') }}" class="text-decoration-none text-white">
+                Salas
             </a>
         </div>
         <div>

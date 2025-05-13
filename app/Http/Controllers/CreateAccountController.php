@@ -20,9 +20,10 @@ class CreateAccountController extends Controller
 
    public function store(CreateAccountRequest $request)
    {
+      $slug = converter_slug($request->name_lastname, $request->cedula);
 
       $name_lastname = explode(' ', $request->name_lastname);
-      
+
       try {
          FacadesDB::beginTransaction();
          $new_user = User::create([
@@ -40,13 +41,15 @@ class CreateAccountController extends Controller
             'name' => $name_lastname[0],
             'lastname' => $name_lastname[1],
             'cedula' => $request->cedula,
-            'number' => $request->number
+            'number' => $request->number,
+            'slug' => $slug
 
          ]);
          FacadesDB::commit();
-         $request->session()->flash('alert-success', 
-                                 'Tu registro se ha completado. Ya puedes iniciar sesión en tu cuenta.'
-                                    );
+         $request->session()->flash(
+            'alert-success',
+            'Tu registro se ha completado. Ya puedes iniciar sesión en tu cuenta.'
+         );
          return redirect('/iniciar-sesion');
       } catch (\Exception $ex) {
          FacadesDB::rollBack();

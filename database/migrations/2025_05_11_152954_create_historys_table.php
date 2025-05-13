@@ -10,11 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
-            $table->id('job_id');
-            $table->string('job', 40)->unique();
-            $table->text('description')->nullable();
-            $table->string('slug', length: 40)->nullable();
+        Schema::create('historys', function (Blueprint $table) {
+            $table->id('history_id');
+            $table->foreignId('employee_id')->nullable()->constrained('employees', 'employee_id');
+            $table->text('message');
+            $table->dateTime('date_time')->default(now());
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('historys');
     }
 };

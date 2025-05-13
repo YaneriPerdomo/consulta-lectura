@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->foreignId('rol_id')->nullable()->constrained('roles', 'rol_id')->onDelete('set null');
-            $table->string('user')->unique();
+            $table->string('user', 30)->unique();
             $table->string('email', 255)->unique();
             $table->boolean('active')->default(true);
             $table->timestamp('email_verified_at')->nullable();

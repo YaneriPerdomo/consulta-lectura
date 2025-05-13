@@ -24,7 +24,7 @@
     <x-top-bar relativePath="../../../"></x-top-bar>
     <x-header-admin></x-header>
     <main class="flex__grow-2 flex-full__aligh-start">
-        <form action="{{ route('admin.employee.update', $data_employee->slug) }}" method="post" class="form form--employee">
+        <form action="{{ route('admin.user.update', $data_person->slug) }}" method="post" class="form form--employee">
             @csrf
 
             @method('PUT')
@@ -49,7 +49,7 @@
                             placeholder="Yaneri Perdomo" aria-label="Username"
                             aria-describedby="basic-addon1"
                             autofocus
-                            value="{{$data_employee->name}} {{ $data_employee->lastname }}">
+                            value="{{$data_person->name}} {{ $data_person->lastname }}">
                     </div>
                     @error('name_lastname')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -62,10 +62,10 @@
                             <div class="input-group">
                                 <select id="type-indicator" name="identity_card_id" class="form-control form__select " >
                                     <option value="" disabled>Seleccione una opción</option>
-                                    @if ($data_employee)
-                                        <option value="1" @if($data_employee->identity_card_id == 1) selected @endif> Venezolano cedulado (V) </option>
-                                        <option value="2" @if($data_employee->identity_card_id == 2) selected @endif> Extranjero cedulado (E)</option>
-                                        <option value="3" @if($data_employee->identity_card_id == 3) selected @endif> Pasaporte</option>
+                                    @if ($data_person)
+                                        <option value="1" @if($data_person->identity_card_id == 1) selected @endif> Venezolano cedulado (V) </option>
+                                        <option value="2" @if($data_person->identity_card_id == 2) selected @endif> Extranjero cedulado (E)</option>
+                                        <option value="3" @if($data_person->identity_card_id == 3) selected @endif> Pasaporte</option>
                                     @else
                                         <option value=""> No se encontraron datos de persona </option>
                                     @endif
@@ -76,7 +76,7 @@
                             placeholder="87654321" aria-label="Username"
                             aria-describedby="basic-addon1"
                             autofocus
-                            value="{{ $data_employee->cedula }}">
+                            value="{{ $data_person->cedula }}">
                     </div>
                     @error('cedula')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -103,9 +103,9 @@
                             <div class="input-group">
                                 <select id="gender_id" name="gender_id" class="form-control form__select " required>
                                      <option value="" disabled>Seleccione una opción</option>
-                                    @if ($data_employee)
-                                        <option value="1" @if($data_employee->gender_id == "1") selected @endif> F </option>
-                                        <option value="2" @if($data_employee->gender_id == "2") selected @endif> M</option>
+                                    @if ($data_person)
+                                        <option value="1" @if($data_person->gender_id == "1") selected @endif> F </option>
+                                        <option value="2" @if($data_person->gender_id == "2") selected @endif> M</option>
                                     @else
                                         <option value=""> No se encontraron datos de persona </option>
                                     @endif
@@ -114,42 +114,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Cargo</label>
-                    <div class="input-group w-100">
-                        <span class="form__icon input-group-text p-0 w-100" id="basic-addon1">
-                            <div class="input-group">
-                                <select id="job_id" name="job_id" class="form-control form__select " required>
-                                    <option value="" disabled >Seleccione una opción</option>
-                                    @foreach ( $jobs as $value )
-                                        <option value="{{ $value['job_id'] }}" @if ($data_employee->job_id == $value['job_id'])
-                                            selected
-                                        @endif > {{$value['job']}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-                <div class="form__item">
-                    <label for="" class="form__label form__label--required">Departamentos</label>
-                    <div class="input-group w-100">
-                        <span class="form__icon input-group-text p-0 w-100" id="basic-addon1">
-                            <div class="input-group">
-                                <select id="room_id" name="room_id" class="form-control form__select " required>
-                                    <option value="" disabled selected>Seleccione una opción</option>
-                                    @foreach ( $rooms as $value )
-                                        <option value="{{ $value['room_id'] }}"
-                                            @if ($data_employee->room_id == $value['room_id'])
-                                                selected
-                                            @endif
-                                            > {{$value['room']}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </span>
-                    </div>
-                </div>
+               
                 <div class="form__item">
                     <label for="number" class="form__label ">Numero</label>
                     <div class="input-group ">
@@ -162,7 +127,7 @@
                             placeholder="+584739997" aria-label="Username"
                             aria-describedby="basic-addon1"
                             autofocus
-                            value="{{ $data_employee->number }}">
+                            value="{{ $data_person->number }}">
                     </div>
                     @error('number')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -176,74 +141,74 @@
                     <p class="d-flex gap-2 form__avatar-content flex-wrap">
                         <label for="1" data-checked="true">
                             <input type="radio"class="input-radio--hidden "
-                                id="1" name="avatar_id" value="1" @if ($data_employee->avatar_id == 1)
+                                id="1" name="avatar_id" value="1" @if ($data_person->avatar_id == 1)
                                 checked
                                 @endif>
-                            <img src="../../img/avatares/default.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 1)
+                            <img src="../../img/avatares/default.png" alt="" class="form__avatar-img @if ($data_person->avatar_id == 1)
                                                  checked
                                              @endif "
-                                @if ($data_employee->avatar_id == 1)
+                                @if ($data_person->avatar_id == 1)
                                                  data-checked="true"
                                 @endif>
                         </label>
                         <label for="2">
-                            <input type="radio" id="2" name="avatar_id" @if ($data_employee->avatar_id == 2)
+                            <input type="radio" id="2" name="avatar_id" @if ($data_person->avatar_id == 2)
                                 checked
                             @endif value="2" class="input-radio--hidden">
                             <img
                                 src="../../img/avatares/boy.png"
                                 alt=""
                                 class="form__avatar-img
-                                @if ($data_employee->avatar_id == 2)
+                                @if ($data_person->avatar_id == 2)
                                     checked
                                 @endif "
-                                @if ($data_employee->avatar_id == 2)
+                                @if ($data_person->avatar_id == 2)
                                     data-checked="true"
                                 @endif>
                         </label>
                         <label for="3">
-                            <input type="radio" id="3" name="avatar_id" value="3" @if ($data_employee->avatar_id == 3)
+                            <input type="radio" id="3" name="avatar_id" value="3" @if ($data_person->avatar_id == 3)
                                 checked
                             @endif class="input-radio--hidden">
                             <img src="../../img/avatares/girl.png" alt="" class="form__avatar-img
-                                @if ($data_employee->avatar_id == 3)
+                                @if ($data_person->avatar_id == 3)
                                     checked
                                 @endif "
-                                @if ($data_employee->avatar_id == 3)
+                                @if ($data_person->avatar_id == 3)
                                     data-checked="true"
                                 @endif
                                 >
                         </label>
                         <label for="4">
-                            <input type="radio" id="4" name="avatar_id"@if ($data_employee->avatar_id == 4)
+                            <input type="radio" id="4" name="avatar_id"@if ($data_person->avatar_id == 4)
                                 checked
                             @endif value="4" class="input-radio--hidden" >
-                            <img src="../../img/avatares/dinosaur.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 4)
+                            <img src="../../img/avatares/dinosaur.png" alt="" class="form__avatar-img @if ($data_person->avatar_id == 4)
                                                  checked
                                              @endif "
-                                @if ($data_employee->avatar_id == 4)
+                                @if ($data_person->avatar_id == 4)
                                                  data-checked="true"
                                 @endif>
                         </label>
                         <label for="5">
-                            <input type="radio" id="5" name="avatar_id"@if ($data_employee->avatar_id == 5)
+                            <input type="radio" id="5" name="avatar_id"@if ($data_person->avatar_id == 5)
                                 checked
                             @endif value="5" class="input-radio--hidden">
-                            <img src="../../img/avatares/young-snow-m.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 5)
+                            <img src="../../img/avatares/young-snow-m.png" alt="" class="form__avatar-img @if ($data_person->avatar_id == 5)
                                                  checked
                                              @endif "
-                                @if ($data_employee->avatar_id == 5)
+                                @if ($data_person->avatar_id == 5)
                                                  data-checked="true"
                                 @endif>
                         </label>
                         <label for="6">
-                            <input type="radio" id="6" name="avatar_id" @if ($data_employee->avatar_id == 6)
+                            <input type="radio" id="6" name="avatar_id" @if ($data_person->avatar_id == 6)
                                 checked
                             @endif value="6" class="input-radio--hidden">
-                            <img src="../../img/avatares/young-snow-f.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 6)
+                            <img src="../../img/avatares/young-snow-f.png" alt="" class="form__avatar-img @if ($data_person->avatar_id == 6)
                                                  checked
                                              @endif "
-                                @if ($data_employee->avatar_id == 6)
+                                @if ($data_person->avatar_id == 6)
                                                  data-checked="true"
                                 @endif>
                         </label>
@@ -305,7 +270,7 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-        <form action="{{ route('admin.employee.update-password', $data_user->user) }}" class="" method="post">
+        <form action="{{ route('admin.user.update-password', $data_person->slug) }}" class="" method="post">
       <div class="modal-header modal-header--bg-red flex-column">
          @csrf
                     @method('PUT')

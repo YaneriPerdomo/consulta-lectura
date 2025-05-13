@@ -1,0 +1,4 @@
+.modal-header--bg-red {
+    background: var(--color-red);
+    color: white;
+}

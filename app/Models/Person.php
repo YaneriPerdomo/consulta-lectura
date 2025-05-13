@@ -19,6 +19,7 @@ class Person extends Model
         'lastname',
         'cedula',
         'number',
+        'slug'
     ];
 
     public function user()
@@ -30,4 +31,8 @@ class Person extends Model
         return $this->belongsTo(Avatar::class,'avatar_id'); 
     }
 
+    public function IdentityCard(){
+        return $this->belongsTo(IdentifyCard::class,'identity_card_id');
+    }
+    
 }

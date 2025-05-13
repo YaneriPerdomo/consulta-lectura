@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Configuration | Biblioteca B</title>
-    <link rel="stylesheet" href="../css/utilities.css">
-    <link rel="stylesheet" href="../css/layouts/_base.css">
-    <link rel="stylesheet" href="../css/components/_button.css">
-    <link rel="stylesheet" href="../css/components/_footer.css">
-    <link rel="stylesheet" href="../css/components/_form.css">
-    <link rel="stylesheet" href="../css/components/_header.css">
-    <link rel="stylesheet" href="../css/components/_input.css">
-    <link rel="stylesheet" href="../css/components/_top-bar.css">
+    <link rel="stylesheet" href="../../../css/utilities.css">
+    <link rel="stylesheet" href="../../../css/layouts/_base.css">
+    <link rel="stylesheet" href="../../../css/components/_button.css">
+    <link rel="stylesheet" href="../../../css/components/_footer.css">
+    <link rel="stylesheet" href="../../../css/components/_form.css">
+    <link rel="stylesheet" href="../../../css/components/_header.css">
+    <link rel="stylesheet" href="../../../css/components/_input.css">
+    <link rel="stylesheet" href="../../../css/components/_top-bar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
@@ -151,27 +151,27 @@
                     <p class="d-flex gap-2 form__avatar-content flex-wrap">
                         <label for="1" data-checked="true">
                             <input type="radio" id="1" name="avatar_id" value="1" checked class="input-radio--hidden ">
-                            <img src="../img/avatares/default.png" alt="" class="form__avatar-img">
+                            <img src="../../../img/avatares/default.png" alt="" class="form__avatar-img">
                         </label>
                         <label for="2">
                             <input type="radio" id="2" name="avatar_id" value="2" class="input-radio--hidden">
-                            <img src="../img/avatares/boy.png" alt="" class="form__avatar-img">
+                            <img src="../../../img/avatares/boy.png" alt="" class="form__avatar-img">
                         </label>
                         <label for="3">
                             <input type="radio" id="3" name="avatar_id" value="3" class="input-radio--hidden">
-                            <img src="../img/avatares/girl.png" alt="" class="form__avatar-img">
+                            <img src="../../../img/avatares/girl.png" alt="" class="form__avatar-img">
                         </label>
                         <label for="4">
                             <input type="radio" id="4" name="avatar_id" value="4" class="input-radio--hidden">
-                            <img src="../img/avatares/dinosaur.png" alt="" class="form__avatar-img">
+                            <img src="../../../img/avatares/dinosaur.png" alt="" class="form__avatar-img">
                         </label>
                         <label for="5">
                             <input type="radio" id="5" name="avatar_id" value="5" class="input-radio--hidden">
-                            <img src="../img/avatares/young-snow-m.png" alt="" class="form__avatar-img">
+                            <img src="../../../img/avatares/young-snow-m.png" alt="" class="form__avatar-img">
                         </label>
                         <label for="6">
                             <input type="radio" id="6" name="avatar_id" value="6" class="input-radio--hidden">
-                            <img src="../img/avatares/young-snow-f.png" alt="" class="form__avatar-img">
+                            <img src="../../../img/avatares/young-snow-f.png" alt="" class="form__avatar-img">
                         </label>
                     </p>
                 </div>

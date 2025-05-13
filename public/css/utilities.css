@@ -22,7 +22,7 @@
     flex-wrap: wrap;
 }
 
-.flex-full__aligh-start{
+.flex-full__aligh-start {
     display: flex;
     justify-content: center;
     align-content: flex-start;
@@ -30,7 +30,7 @@
     flex-wrap: wrap;
 }
 
-.flex-full__justify-content-end{
+.flex-full__justify-content-end {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -46,13 +46,16 @@
     color: var(--color-blue) !important;
 }
 
-.text-red{
-    color:var(--color-red) !important;
+.text-red {
+    color: var(--color-red) !important;
 }
-.text-grey{
-    color:var(--color-grey) !important;
+.text-grey {
+    color: var(--color-grey) !important;
 }
 
-.text--color-black{
+.text--color-black {
     color: var(--color-black) !important;
+}
+.w-adjustable {
+    width: clamp(700px, 30vw, 300px);
 }

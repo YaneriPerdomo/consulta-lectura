@@ -15,8 +15,9 @@ class RoomSeeder extends Seeder
     public function run(): void
     {
         FacadesDB::table('rooms')->insert([
-            'room' => 'Sala HEMEROTECA Ulices Acosta ',
+            'room' => 'Sala HEMEROTECA Ulices Acosta',
             'description' => 'Dedicada a la música, su historia y evaluación en el tiempo y una gran variedad de colección de soporte sonoro como discos de acetato, vinil, cintas de carrete abierto, cassette, CD, DVD.',
-       ]);
+            'slug' => 'sala-hemeroteca-ulices-acosta',
+        ]);
     }
 }

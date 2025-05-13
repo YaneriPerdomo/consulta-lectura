@@ -47,7 +47,7 @@
                 </div>
                 <hr>
                 <div class="card__button-option flex-full__justify-content-between ">
-                    <a href="{{ route('admin.job.index') }}" class="text-decoration-white card__link-cancel">
+                    <a href="{{ route('admin.room.index') }}" class="text-decoration-white card__link-cancel">
                         <button class="button button--color-grey" type="submit">
                             Cancelar
                         </button>

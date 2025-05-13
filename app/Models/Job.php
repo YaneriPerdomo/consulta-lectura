@@ -12,6 +12,9 @@ class Job extends Model
     protected $primaryKey = 'job_id'; 
     protected $fillable = [ 
         'job',
+        'description',
+        'slug'
+
     ];
 
     public function employees(){

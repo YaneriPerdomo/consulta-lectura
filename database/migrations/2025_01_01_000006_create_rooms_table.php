@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('room_id');
             $table->string('room', 90)->unique();
             $table->text('description')->nullable();
+            $table->string('slug', 90)->nullable();
            /* $table->timestamps(); */
         });
     }

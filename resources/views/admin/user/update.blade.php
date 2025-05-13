@@ -36,7 +36,7 @@
                                 <h1><b>Empleados</b></h1>
                             </div>
                             <div>
-                                <a href="{{ route('admin.employee.create-account') }}"
+                                <a href="{{ route('admin.person.create-account') }}"
                                     class="text-decoration-none text-white">
                                     <button class="button button--color-blue">
                                         Agregar empleado
@@ -73,25 +73,25 @@
                                             @foreach ($users->items() as $value)
                                                 <tr class='show'>
                                                     <td>{{ $value->user }}</td>
-                                                    <td>{{ $value->employee->name ?? '' }} {{ $value->employee->lastname ?? ''}}
+                                                    <td>{{ $value->person->name ?? '' }} {{ $value->person->lastname ?? ''}}
                                                     </td>
-                                                    <td>{{ $value->employee->cedula ?? 'Sin cedula' }}</td>
-                                                    <td>{{ json_decode($value->employee->job)->job ?? 'No tiene cargo' }}</td>
-                                                    <td>{{ json_decode($value->employee->room)->room ?? 'No tiene departamento asignado' }}
+                                                    <td>{{ $value->person->cedula ?? 'Sin cedula' }}</td>
+                                                    <td>{{ json_decode($value->person->job)->job ?? 'No tiene cargo' }}</td>
+                                                    <td>{{ json_decode($value->person->room)->room ?? 'No tiene departamento asignado' }}
                                                     </td>
 
                                                     <td class='operations'>
-                                                        <a href="{{ route('admin.employee.delete', $value->employee->slug) }}">
+                                                        <a href="{{ route('admin.person.delete', $value->user) }}">
                                                             <button class='button button--color-red'>
                                                                 <i class='bi bi-trash'></i>
                                                             </button>
                                                         </a>
-                                                        <a href='{{ route('admin.employee.edit', $value->employee->slug) }}'>
+                                                        <a href='{{ route('admin.person.edit', $value->user) }}'>
                                                             <button class="button button--color-orange">
                                                                 <i class='bi bi-person-lines-fill'></i>
                                                             </button>
                                                         </a>
-                                                        <a href='{{ route('admin.employee.history', $value->user) }}'>
+                                                        <a href='{{ route('admin.person.history', $value->user) }}'>
                                                             <button class="button button--color-black">
                                                                 <i class="bi bi-journal-text"></i>
                                                             </button>

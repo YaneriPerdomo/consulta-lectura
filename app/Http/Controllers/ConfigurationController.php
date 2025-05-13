@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ConfirmPasswordRequest;
 use App\Http\Requests\CreateAccountRequest;
 use App\Http\Requests\ConfigurationRequest;
+use App\Models\Employee;
+use App\Models\Job;
 use App\Models\Person;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as FacadesDB;
@@ -25,18 +28,30 @@ class ConfigurationController extends Controller
         $user_id = Auth::user()->user_id;
         $data_user = User::find($user_id);
 
-        switch ($data_user->rol_id) {
-            case 1:
-                return view("admin.configuration", ['data_user' => $data_user]);
-                break;
-            case 2: //Usuario
-                $data_person = Person::findOrFail(Auth::user()->person->person_id);
-                return view("user.configuration", ['data_user' => $data_user, 'data_person' => $data_person]);
-                break;
-            default:
-                # code...
-                break;
-        }
+            switch ($data_user->rol_id) {
+                case 1:
+                    return view("admin.configuration", ['data_user' => $data_user]);
+                    break;
+                case 2:
+                    $data_person = Person::findOrFail(Auth::user()->person->person_id);
+                    return view("user.configuration", ['data_user' => $data_user, 'data_person' => $data_person]);
+                    break;
+                case 3:
+                    $data_employee = Employee::where('user_id', Auth::user()->user_id)->first();
+
+                    $jobs = Job::all();
+                    $rooms = Room::all();
+                    return view('employee.configuration', [
+                        'data_user' => $data_user,
+                        'data_employee' => $data_employee,
+                        'rooms' => $rooms,
+                        'jobs' => $jobs
+                    ]);
+                    break;
+                default:
+                    break;
+            }
+       
     }
 
     public function update(ConfigurationRequest $request)
@@ -45,7 +60,7 @@ class ConfigurationController extends Controller
         switch (Auth::user()->rol_id) {
 
             case 1:
-               
+
                 try {
                     FacadesDB::beginTransaction();
 
@@ -74,9 +89,7 @@ class ConfigurationController extends Controller
                 }
                 break;
             case 2:
-                 
                 try {
-
 
                     FacadesDB::beginTransaction();
 
@@ -85,7 +98,6 @@ class ConfigurationController extends Controller
 
                     $data_user = User::find($user_id);
                     $data_person = Person::find(Auth::user()->person->person_id);
-
 
                     if (
                         $data_user->user == $request->user &&
@@ -105,15 +117,18 @@ class ConfigurationController extends Controller
                             'user' => $request->user,
                             'email' => $request->email,
                         ]);
- 
+
+                        $slug_update = converter_slug($request->name_lastname);
+
                         $data_person->update([
                             'avatar_id' => $request->avatar_id,
                             'identity_card_id' => $request->identity_card_id,
                             'gender_id' => $request->gender_id,
                             'name' => $name_lastname[0],
                             'lastname' => $name_lastname[1],
-                            'number' => $request->number, 
+                            'number' => $request->number,
                             'cedula' => $request->cedula,
+                            'slug' => $slug_update
                         ]);
 
                         FacadesDB::commit();
@@ -134,6 +149,9 @@ class ConfigurationController extends Controller
                 }
                 break;
             default:
+            case 3:
+
+                break;
                 echo 'No hay ningun roo';
                 break;
         }

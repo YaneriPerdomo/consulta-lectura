@@ -13,6 +13,7 @@ class Room extends Model
     protected $fillable = [ 
         'room',
         'description',
+        'slug'
     ];
 
     public function employees(){

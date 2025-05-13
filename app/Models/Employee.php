@@ -20,6 +20,8 @@ class Employee extends Model
         'cedula',
         'number',
         'low_data'
+        ,
+        'slug'
     ];
 
     public function room()
@@ -35,7 +37,6 @@ class Employee extends Model
         return $this->belongsTo(Job::class,'job_id');
     }
 
-    
     public function avatar(){
         return $this->belongsTo(Avatar::class,'avatar_id'); 
     }

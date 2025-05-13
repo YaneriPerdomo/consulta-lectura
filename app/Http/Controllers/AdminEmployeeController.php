@@ -32,7 +32,6 @@ class AdminEmployeeController extends Controller
 
    public function create()
    {
-
       $jobs = Job::all();
       $rooms = Room::all();
       return view("admin.human-resources.employee.create", ['jobs' => $jobs, 'rooms' => $rooms]);
@@ -41,7 +40,7 @@ class AdminEmployeeController extends Controller
    public function store(Request $request)
    {
 
-
+      $slug = converter_slug($request->name_lastname, $request->cedula);
       $name_lastname = explode(' ', $request->name_lastname);
 
       try {
@@ -63,7 +62,8 @@ class AdminEmployeeController extends Controller
             'cedula' => $request->cedula,
             'name' => $name_lastname[0],
             'lastname' => $name_lastname[1],
-            'number' => $request->number
+            'number' => $request->number,
+            'slug' => $slug
 
          ]);
 
@@ -73,7 +73,7 @@ class AdminEmployeeController extends Controller
             'alert-success',
             $message_session
          );
-         return redirect('/empleados');
+         return redirect('/recursos-humanos/empleados');
       } catch (\Exception $ex) {
          FacadesDB::rollBack();
          throw $ex;
@@ -81,11 +81,12 @@ class AdminEmployeeController extends Controller
 
    }
 
-   public function edit($name_user)
+   public function edit($slug_url)
    {
 
-      $data_user = User::where('user', $name_user)->first();
-      $data_employee = Employee::where('user_id', $data_user->user_id)->first();
+
+      $data_employee = Employee::where('slug', $slug_url)->first();
+      $data_user = User::where('user_id', $data_employee->user_id)->first();
       $jobs = Job::all();
       $rooms = Room::all();
       return view('admin.human-resources.employee.edit', [
@@ -96,7 +97,7 @@ class AdminEmployeeController extends Controller
       ]);
    }
 
-   public function update(EmployeeUpdateRequest $request)
+   public function update(EmployeeUpdateRequest $request, $slug_url)
    {
 
       try {
@@ -104,10 +105,11 @@ class AdminEmployeeController extends Controller
 
          $name_lastname = explode(' ', $request->name_lastname);
 
-         $user_id = $request->user_id;
+         $slug_update = converter_slug($request->name_lastname, $request->cedula);
 
-         $data_user = User::find($user_id);
-         $data_employee = Employee::where('user_id', $user_id)->first();
+         $data_employee = Employee::where('slug', $slug_url)->first();
+
+         $data_user = User::where('user_id', $data_employee->user_id)->first();
 
 
          if (
@@ -143,14 +145,15 @@ class AdminEmployeeController extends Controller
                'cedula' => $request->cedula,
                'name' => $name_lastname[0],
                'lastname' => $name_lastname[1],
-               'number' => $request->number
+               'number' => $request->number,
+               'slug' => $slug_update
             ]);
 
             FacadesDB::commit();
 
             $request->session()->flash('alert-success-update-data', 'Los datos personales se han actualizado.');
 
-            return redirect('recursos-humanos/empleado/' . $request->user . '/editar');
+            return redirect('recursos-humanos/empleado/' . $slug_update . '/editar');
          }
 
       } catch (\Exception $ex) {
@@ -161,27 +164,34 @@ class AdminEmployeeController extends Controller
 
    public function updatePassword(ConfirmPasswordRequest $request, $name_user)
    {
+
       $data_user = User::where('user', $name_user)->first();
       $data_user->update([
          'password' => Hash::make($request->password),
       ]);
 
+      $data_employee = Employee::where('user_id', $data_user->user_id)->first();
       $request->session()->flash(
          'alert-success-update-password',
          '¡Contraseña actualizada con éxito!'
       );
 
-      return redirect('recursos-humanos/empleado/' . $data_user->user . '/editar');
+      return redirect('recursos-humanos/empleado/' . $data_employee->slug . '/editar');
    }
 
-   public function showDeleteAccount()
+   public function showDeleteAccount($slug_url)
    {
-      return view('admin.human-resources.employee.delete');
+      return view('admin.human-resources.employee.delete', ['slug'=> $slug_url]);
    }
 
    //show viw delete-account employee
    public function destroy(ConfirmPasswordRequest $request, $name_user)
    {
 
+   }
+
+   public function showHistory($name)
+   {
+      return view('admin.human-resources.employee.history');
    }
 }

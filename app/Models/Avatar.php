@@ -20,6 +20,6 @@ class Avatar extends Model
     }
 
     public function employees(){
-        return $this->hasMany(Employee::class, 'employee_id');
+        return $this->hasMany(Employee::class, 'avatar_id');
     }
 }

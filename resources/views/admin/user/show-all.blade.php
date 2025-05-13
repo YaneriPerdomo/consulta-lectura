@@ -33,16 +33,9 @@
                     <article class="form">
                         <div class="flex-full__justify-content-between p-0">
                             <div>
-                                <h1><b>Empleados</b></h1>
+                                <h1><b>Usuarios</b></h1>
                             </div>
-                            <div>
-                                <a href="{{ route('admin.employee.create-account') }}"
-                                    class="text-decoration-none text-white">
-                                    <button class="button button--color-blue">
-                                        Agregar empleado
-                                    </button>
-                                </a>
-                            </div>
+                 
                         </div>
                         <div class="">
                             <hr>
@@ -58,9 +51,9 @@
                                         <tr>
                                             <th>Usuario</th>
                                             <th>Nombre y apellido</th>
+                                            <th>Tipo de identidad</th>
                                             <th>Cedula</th>
-                                            <th>Cargo laboral</th>
-                                            <th>Departamento</th>
+                                            <th>Correo electronico</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </thead>
@@ -68,30 +61,53 @@
                                     <tbody>
 
                                         @if ($users->items() == [])
-                                            <p>No hay empleados registrados por los momentos.</p>
+                                            <p>No hay usuarios registrados por los momentos.</p>
                                         @else
                                             @foreach ($users->items() as $value)
                                                 <tr class='show'>
                                                     <td>{{ $value->user }}</td>
-                                                    <td>{{ $value->employee->name ?? '' }} {{ $value->employee->lastname ?? ''}}
+                                                    <td>{{ $value->person->name ?? '' }} {{ $value->person->lastname ?? ''}}
                                                     </td>
-                                                    <td>{{ $value->employee->cedula ?? 'Sin cedula' }}</td>
-                                                    <td>{{ json_decode($value->employee->job)->job ?? 'No tiene cargo' }}</td>
-                                                    <td>{{ json_decode($value->employee->room)->room ?? 'No tiene departamento asignado' }}
+                                                    <td>@switch($value->person->identity_card_id)
+                                                        @case(1)
+                                                            @if ($value->person->gender_id == 1)
+                                                                Venezolana Cedulada
+                                                            @else
+                                                                Venezolano Cedulado
+                                                            @endif
+                                                        @break
+                                                        @case(2)
+                                                            @if ($value->person->gender_id == 1)
+                                                                Extranjera cedulada
+                                                            @else
+                                                                Extranjero cedulado
+                                                            @endif
+                                                        @break
+                                                        @case(3)
+                                                            Pasaporte
+                                                        @break
+                                                    
+                                                        @default
+                                                            
+                                                    @endswitch
+                                                    </td>
+                                                    <td>{{ $value->person->cedula ?? 'Sin cedula' }}</td>
+
+                                                    <td>{{ $value->email?? 'No tiene departamento asignado' }}
                                                     </td>
 
                                                     <td class='operations'>
-                                                        <a href="{{ route('admin.employee.delete', $value->employee->slug) }}">
+                                                        <a href="{{ route('admin.user.delete', $value->person->slug) }}">
                                                             <button class='button button--color-red'>
                                                                 <i class='bi bi-trash'></i>
                                                             </button>
                                                         </a>
-                                                        <a href='{{ route('admin.employee.edit', $value->employee->slug) }}'>
+                                                        <a href='{{ route('admin.user.edit', $value->person->slug) }}'>
                                                             <button class="button button--color-orange">
                                                                 <i class='bi bi-person-lines-fill'></i>
                                                             </button>
                                                         </a>
-                                                        <a href='{{ route('admin.employee.history', $value->user) }}'>
+                                                        <a href='{{ route('admin.user.history', $value->user) }}'>
                                                             <button class="button button--color-black">
                                                                 <i class="bi bi-journal-text"></i>
                                                             </button>

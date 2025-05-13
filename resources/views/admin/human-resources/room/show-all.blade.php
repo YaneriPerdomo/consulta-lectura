@@ -23,6 +23,12 @@
     .article--all-job {
         align-self: start;
     }
+
+    .table__operations{
+        display:flex !important;
+        gap:0.5rem;
+        
+    }
 </style>
 
 <body class="h-100 d-flex flex-column">
@@ -32,12 +38,12 @@
         <article class="form w-adjustable article--all-job">
             <div class="flex-full__justify-content-between p-0">
                 <div>
-                    <h1><b>Cargos</b></h1>
+                    <h1><b>Salas</b></h1>
                 </div>
                 <div>
-                    <a href="{{ route('admin.job.create') }}" class="text-decoration-none text-white">
+                    <a href="{{ route('admin.room.create') }}" class="text-decoration-none text-white">
                         <button class="button button--color-blue">
-                            Agregar cargo
+                            Agregar sala
                         </button>
                     </a>
                 </div>
@@ -59,24 +65,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($jobs->items() == [])
+                            @if ($rooms->items() == [])
                                 <p>No hay cargos registrados por los momentos.</p>
                             @else
-                                @foreach ($jobs->items() as $value)
+                                @foreach ($rooms->items() as $value)
                                     <tr class='show'>
-                                        <td>{{ $value->job }}</td>
+                                        <td>{{ $value->room }}</td>
                                         <td>{{ $value->description }}</td>
                                         </td>
-                                        <td class='operations'>
-                                            <a href="{{ route('admin.job.delete', $value->slug) }}">
+                                        <td class='table__operations'>
+                                            <a href="{{ route('admin.room.delete', $value->room) }}">
                                                 <button type="button" class="button button--color-red js-detele-account">
                                                     <i class='bi bi-trash''></i>
-
-                                                            </button></a>
-                                                            <a href=' {{ route('admin.job.edit', $value->slug ?? null) }}'>
-                                                        <button class="button button--color-orange">
-                                                            <i class='bi bi-person-lines-fill'></i>
-                                                        </button>
+                                                </button>
+                                            </a>
+                                            <a href=' {{ route('admin.room.edit', $value->slug ) }}'>
+                                                <button class="button button--color-orange">
+                                                    <i class='bi bi-person-lines-fill'></i>
+                                                </button>
                                             </a>
 
                                         </td>
@@ -91,12 +97,12 @@
                 <div class="flex-full__justify-content-between">
                     <div>
                         <p>
-                            Mostrando {{ $jobs->count() == 1 ? 'registro' : 'registros' }} 1 - {{ $jobs->count() }}
-                            de un total de {{ $jobs->total() }}
+                            Mostrando {{ $rooms->count() == 1 ? 'registro' : 'registros' }} 1 - {{ $rooms->count() }}
+                            de un total de {{ $rooms->total() }}
                         </p>
                     </div>
                     <div>
-                        {{ $jobs->links() }}
+                        {{ $rooms->links() }}
                     </div>
                 </div>
             </div>
