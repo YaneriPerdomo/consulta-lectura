@@ -22,7 +22,9 @@ class User extends Authenticatable
         'rol_id',
         'user',
         'name',
+        'active',
         'email',
+        'created_at',
         'password',
     ];
 

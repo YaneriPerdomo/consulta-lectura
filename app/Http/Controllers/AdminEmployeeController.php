@@ -100,6 +100,7 @@ class AdminEmployeeController extends Controller
    public function update(EmployeeUpdateRequest $request, $slug_url)
    {
 
+      
       try {
          FacadesDB::beginTransaction();
 
@@ -123,14 +124,16 @@ class AdminEmployeeController extends Controller
             $data_employee->job_id == $request->job_id &&
             $data_employee->avatar_id == $request->avatar_id &&
             $data_employee->number == $request->number &&
-            $data_employee->gender_id == $request->gender_id
+            $data_employee->gender_id == $request->gender_id &&
+            $data_user->active == $request->status
          ) {
-            return redirect('/empleado/' . $data_user->user . '/editar');
+            return redirect('recursos-humanos/empleado/' . $slug_url . '/editar');
          } else {
 
             $data_user->update([
                'user' => $request->user,
                'email' => $request->email,
+               'active' => $request->status
             ]);
 
             $data_employee->number = $request->number;
@@ -146,13 +149,15 @@ class AdminEmployeeController extends Controller
                'name' => $name_lastname[0],
                'lastname' => $name_lastname[1],
                'number' => $request->number,
-               'slug' => $slug_update
+               'slug' => $slug_update,
+               
             ]);
 
             FacadesDB::commit();
 
             $request->session()->flash('alert-success-update-data', 'Los datos personales se han actualizado.');
 
+            echo 'hola';
             return redirect('recursos-humanos/empleado/' . $slug_update . '/editar');
          }
 

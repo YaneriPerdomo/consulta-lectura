@@ -179,7 +179,7 @@
                                 id="1" name="avatar_id" value="1" @if ($data_employee->avatar_id == 1)
                                 checked
                                 @endif>
-                            <img src="../../img/avatares/default.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 1)
+                            <img src="../../../img/avatares/default.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 1)
                                                  checked
                                              @endif "
                                 @if ($data_employee->avatar_id == 1)
@@ -191,7 +191,7 @@
                                 checked
                             @endif value="2" class="input-radio--hidden">
                             <img
-                                src="../../img/avatares/boy.png"
+                                src="../../../img/avatares/boy.png"
                                 alt=""
                                 class="form__avatar-img
                                 @if ($data_employee->avatar_id == 2)
@@ -205,7 +205,7 @@
                             <input type="radio" id="3" name="avatar_id" value="3" @if ($data_employee->avatar_id == 3)
                                 checked
                             @endif class="input-radio--hidden">
-                            <img src="../../img/avatares/girl.png" alt="" class="form__avatar-img
+                            <img src="../../../img/avatares/girl.png" alt="" class="form__avatar-img
                                 @if ($data_employee->avatar_id == 3)
                                     checked
                                 @endif "
@@ -218,7 +218,7 @@
                             <input type="radio" id="4" name="avatar_id"@if ($data_employee->avatar_id == 4)
                                 checked
                             @endif value="4" class="input-radio--hidden" >
-                            <img src="../../img/avatares/dinosaur.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 4)
+                            <img src="../../../img/avatares/dinosaur.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 4)
                                                  checked
                                              @endif "
                                 @if ($data_employee->avatar_id == 4)
@@ -229,7 +229,7 @@
                             <input type="radio" id="5" name="avatar_id"@if ($data_employee->avatar_id == 5)
                                 checked
                             @endif value="5" class="input-radio--hidden">
-                            <img src="../../img/avatares/young-snow-m.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 5)
+                            <img src="../../../img/avatares/young-snow-m.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 5)
                                                  checked
                                              @endif "
                                 @if ($data_employee->avatar_id == 5)
@@ -240,7 +240,7 @@
                             <input type="radio" id="6" name="avatar_id" @if ($data_employee->avatar_id == 6)
                                 checked
                             @endif value="6" class="input-radio--hidden">
-                            <img src="../../img/avatares/young-snow-f.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 6)
+                            <img src="../../../img/avatares/young-snow-f.png" alt="" class="form__avatar-img @if ($data_employee->avatar_id == 6)
                                                  checked
                                              @endif "
                                 @if ($data_employee->avatar_id == 6)
@@ -263,7 +263,30 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-        
+                 <div class="form__item">
+                    <label for="" class="form__label form__label--required">Estado</label>
+                    <div class="input-group w-100">
+                        <span class="form__icon input-group-text p-0 w-100" id="basic-addon1">
+                            <div class="input-group">
+                                <select id="status" name="status" class="form-control form__select " required>
+                                    <option value="" disabled >Seleccione una opción</option>
+                                    <option value="1" 
+                                    @if ($data_user->active == 1)
+                                        selected
+                                    @endif
+                                    >
+                                        {{  $data_employee->gender_id == 1 ? 'Activa' : 'Activo' }}
+                                    </option>
+                                    <option value="0"  @if ($data_user->active == 0)
+                                        selected
+                                    @endif>
+                                        {{  $data_employee->gender_id == 1 ? 'Inactiva' : 'Inactivo' }}
+                                    </option>
+                                </select>
+                            </div>
+                        </span>
+                    </div>
+                </div>
                
                 <div class="form__item text-center">
                     <button type="button" class=" button--update-password button text--color-black" data-bs-toggle="modal" data-bs-target="#staticBackdrop">

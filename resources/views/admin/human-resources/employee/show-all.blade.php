@@ -61,6 +61,7 @@
                                             <th>Cedula</th>
                                             <th>Cargo laboral</th>
                                             <th>Departamento</th>
+                                            <th>Estado</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </thead>
@@ -77,9 +78,15 @@
                                                     </td>
                                                     <td>{{ $value->employee->cedula ?? 'Sin cedula' }}</td>
                                                     <td>{{ json_decode($value->employee->job)->job ?? 'No tiene cargo' }}</td>
-                                                    <td>{{ json_decode($value->employee->room)->room ?? 'No tiene departamento asignado' }}
-                                                    </td>
+                                                    <td>{{ json_decode($value->employee->room)->room ?? 'No tiene departamento asignado' }}</td>
+                                                        <td>
+                                                        @if ($value->active == 1)
+                                                            {{  $value->employee->gender_id == 1 ? 'Activa' : 'Activo' }}
+                                                        @else
 
+                                                            {{  $value->employee->gender_id == 1 ? 'Inactiva' : 'Inactivo' }}
+                                                        @endif
+                                                    </td>
                                                     <td class='operations'>
                                                         <a href="{{ route('admin.employee.delete', $value->employee->slug) }}">
                                                             <button class='button button--color-red'>

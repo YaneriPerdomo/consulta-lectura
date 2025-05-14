@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteAccountController;
 use App\Http\Controllers\JobEmployeeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileReader;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\RoomController;
@@ -46,6 +47,12 @@ Route::controller(ConfigurationController::class)->middleware(['auth'])->group(f
     Route::put('/configuracion/actualizar-datos', 'update')->name('configuration.update');
     Route::put('/configuracion/cambiar-clave', 'updatePassword')->name('configuration.password');
 });
+
+Route::controller(ProfileReader::class)->middleware(['auth'])->group(function () {
+    Route::get('/profile', 'index')->name('user.profile.index'); 
+});
+
+
 
 
 

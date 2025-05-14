@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
     'accept'          => 'Aceptar',
     'action'          => 'Acción',
+    'May' => 'Mayo',
     'actions'         => 'Acciones',
     'add'             => 'Agregar',
     'admin'           => 'Administrar',
