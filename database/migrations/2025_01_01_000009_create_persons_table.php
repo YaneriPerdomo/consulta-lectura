@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('lastname', 55);
             $table->string('cedula', 10)->unique()->nullable();
             $table->string('number', 13)->nullable()->unique();
+            $table->text('address')->nullable();
             $table->string('slug', 120)->nullable();
             $table->timestamps();
         });

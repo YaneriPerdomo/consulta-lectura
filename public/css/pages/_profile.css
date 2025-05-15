@@ -1,0 +1,19 @@
+.profile__cover-photo--bg-blue {
+    background: var(--color-blue);
+}
+
+.profile__cover-photo--bg-pink {
+    background: var(--color-pink);
+}
+
+.profile__img {
+    width: clamp(250px, 20vw, 269px);
+    width: 30vh;
+}
+
+.profile__show-data {
+    background: #b5b5b5;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+}

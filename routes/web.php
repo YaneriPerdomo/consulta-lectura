@@ -49,7 +49,9 @@ Route::controller(ConfigurationController::class)->middleware(['auth'])->group(f
 });
 
 Route::controller(ProfileReader::class)->middleware(['auth'])->group(function () {
-    Route::get('/profile', 'index')->name('user.profile.index'); 
+    Route::get('/perfil-reciente', 'recent')->name('user.profile.recent'); 
+    Route::get('/perfil-valoraciones', 'ratings')->name('user.profile.ratings'); 
+    Route::get('/perfil-favoritos', 'favorites')->name('user.profile.favorites'); 
 });
 
 

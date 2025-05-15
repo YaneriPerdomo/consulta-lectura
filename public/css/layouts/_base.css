@@ -9,6 +9,7 @@
     --color-grey-two: #979797;
     --color-light-red: rgb(255, 187, 182);
     --color-orange: rgb(229, 95, 43) ;
+    --color-pink : rgb(255, 137, 156);
 }
 body {
     background: rgb(230, 230, 230) !important;

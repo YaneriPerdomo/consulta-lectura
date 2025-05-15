@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -18,14 +17,15 @@ return new class extends Migration
             $table->foreignId('job_id')->nullable()->constrained('jobs', 'job_id')->onDelete('set null');
             $table->foreignId('room_id')->nullable()->constrained('rooms', 'room_id')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users', 'user_id')->onDelete('cascade');
-            $table->foreignId('avatar_id')->nullable()->constrained('avatars', 'avatar_id')/*->onDelete('cascade') */;
+            $table->foreignId('avatar_id')->nullable()->constrained('avatars', 'avatar_id')/*->onDelete('cascade') */ ;
             $table->string('name', 55);
             $table->string('lastname', 55);
             $table->string('cedula', 10)->unique()->nullable();
             $table->string('number', 13)->nullable()->unique();
             $table->dateTime('low_data')->nullable()->default(null);
-            $table->string('slug',  120)->nullable()->default(null);
-            $table->timestamps(); 
+            $table->text('address')->nullable();
+            $table->string('slug', 120)->nullable()->default(null);
+            $table->timestamps();
         });
     }
 

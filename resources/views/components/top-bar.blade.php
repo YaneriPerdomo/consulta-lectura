@@ -35,7 +35,7 @@
                             {{ Auth::user()->user }}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Perfil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.profile.recent') }}">Perfil</a></li>
                             <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Configuracion</a></li>
                             <hr>
                             <li><a class="dropdown-item" href="#">Historial</a></li>
