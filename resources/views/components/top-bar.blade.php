@@ -61,13 +61,10 @@
                             {{ Auth::user()->user }}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Panel de control</a></li>
                             <li><a class="dropdown-item" href="{{ route('configuration.index') }}">Configuracion</a></li>
                             <hr>
                             <li><a class="dropdown-item" href="#">Historial</a></li>
-                            <li><a class="dropdown-item" href="#">Favoritos</a></li>
-                            <li><a class="dropdown-item" href="#">Mis listas</a></li>
-                            <li><a class="dropdown-item" href="#">Valoraciones</a></li>
                             <hr>
                             <li>
                                 <form action="./logout" method="POST">

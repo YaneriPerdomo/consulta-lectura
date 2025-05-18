@@ -2,15 +2,19 @@
 
 use App\Http\Controllers\AdminEmployeeController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CreateAccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteAccountController;
+use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\EmployeeBookController;
 use App\Http\Controllers\JobEmployeeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileReader;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\CheckAdminRole;
@@ -49,24 +53,20 @@ Route::controller(ConfigurationController::class)->middleware(['auth'])->group(f
 });
 
 Route::controller(ProfileReader::class)->middleware(['auth'])->group(function () {
-    Route::get('/perfil-reciente', 'recent')->name('user.profile.recent'); 
-    Route::get('/perfil-valoraciones', 'ratings')->name('user.profile.ratings'); 
-    Route::get('/perfil-favoritos', 'favorites')->name('user.profile.favorites'); 
+    Route::get('/perfil-reciente', 'recent')->name('user.profile.recent');
+    Route::get('/perfil-valoraciones', 'ratings')->name('user.profile.ratings');
+    Route::get('/perfil-favoritos', 'favorites')->name('user.profile.favorites');
 });
-
-
-
-
 
 Route::controller(DeleteAccountController::class)->middleware(['auth', CheckUserRole::class])->group(function () {
     Route::get('/eliminar-cuenta', 'index')->name('delete-account.index');
     ;
 });
 
-
 Route::get('panel-control', [DashboardController::class, 'index'])
-    ->middleware(['auth', CheckAdminRole::class])
+    ->middleware(['auth'])
     ->name('dashboard');
+
 
 Route::controller(AdminEmployeeController::class)->middleware(['auth', CheckAdminRole::class])->group(function () {
     Route::get('recursos-humanos/empleados', 'index')->middleware(['auth', CheckAdminRole::class])->name('admin.employee.index');
@@ -109,3 +109,45 @@ Route::controller(AdminUserController::class)->middleware(['auth', CheckAdminRol
     Route::get('usuario/{slug}/historial', 'showHistory')->middleware(['auth', CheckAdminRole::class])->name('')->name('admin.user.history');
 
 });
+
+Route::controller(EmployeeBookController::class)->middleware(['auth', CheckEmployeeRole::class])->group(function () {
+    Route::get('recursos-de-lectura/libros', 'index')->name('employee.book.index');
+    Route::get('recursos-de-lectura/libro/crear', 'create')->name('employee.book.create');
+    Route::post('recursos-de-lectura/libros', 'store')->name('employee.book.store');
+
+});
+
+Route::controller(AuthorController::class)->middleware(['auth'])->group(function () {
+    Route::get('datos-de-recursos-de-lectura/autores', 'index')->name('employee.author.index');
+    Route::get('datos-de-recursos-de-lectura/autor/crear', 'create')->name('employee.author.create');
+    Route::post('datos-de-recursos-de-lectura/autores', 'store')->name('employee.author.store');
+    Route::get('datos-de-recursos-de-lectura/autor/{slug}/editar', 'edit')->name('employee.author.edit');
+    Route::put('datos-de-recursos-de-lectura/autor/{slug}/actualizar', 'update')->name('employee.author.update');
+    Route::get('datos-de-recursos-de-lectura/{slug}/delete', 'delete')->name('employee.author.delete');
+
+});
+
+
+Route::controller(EditorialController::class)->middleware(['auth'])->group(function () {
+    Route::get('datos-de-recursos-de-lectura/editoriales', 'index')->name('employee.editorial.index');
+    Route::get('datos-de-recursos-de-lectura/editorial/crear', 'create')->name('employee.editorial.create');
+    Route::post('datos-de-recursos-de-lectura/editoriales', 'store')->name('employee.editorial.store');
+    Route::get('datos-de-recursos-de-lectura/editorial/{slug}/editar', 'edit')->name('employee.editorial.edit');
+    Route::put('datos-de-recursos-de-lectura/editorial/{slug}/actualizar', 'update')->name('employee.editorial.update');
+    Route::get('datos-de-recursos-de-lectura/{slug}/delete', 'delete')->name('employee.editorial.delete');
+
+});
+
+
+
+Route::controller(TagController::class)->middleware(['auth'])->group(function () {
+    Route::get('datos-de-recursos-de-lectura/etiquetas', 'index')->name('employee.tag.index');
+    Route::get('datos-de-recursos-de-lectura/etiqueta/crear', 'create')->name('employee.tag.create');
+    Route::post('datos-de-recursos-de-lectura/etiquetas', 'store')->name('employee.tag.store');
+    Route::get('datos-de-recursos-de-lectura/etiqueta/{slug}/editar', 'edit')->name('employee.tag.edit');
+    Route::put('datos-de-recursos-de-lectura/etiqueta/{slug}/actualizar', 'update')->name('employee.tag.update');
+    Route::get('datos-de-recursos-de-lectura/{slug}/delete', 'delete')->name('employee.tag.delete');
+});
+
+
+ 

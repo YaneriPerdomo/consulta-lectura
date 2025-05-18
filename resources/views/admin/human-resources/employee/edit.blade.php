@@ -22,7 +22,7 @@
 
 <body class="h-100 d-flex flex-column">
     <x-top-bar relativePath="../../../"></x-top-bar>
-    <x-header-admin></x-header>
+    <x-header-auth></x-header-auth>
     <main class="flex__grow-2 flex-full__aligh-start">
         <form action="{{ route('admin.employee.update', $data_employee->slug) }}" method="post" class="form form--employee">
             @csrf

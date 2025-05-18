@@ -14,6 +14,9 @@
     flex-wrap: wrap;
 }
 
+.align-self-start {
+    align-self: start;
+}
 .flex-full__justify-aligh-start {
     display: flex;
     justify-content: center;

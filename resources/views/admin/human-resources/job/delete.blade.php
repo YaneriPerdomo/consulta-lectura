@@ -22,7 +22,7 @@
 
 <body class="h-100 d-flex flex-column">
     <x-top-bar></x-top-bar>
-    <x-header-admin relativePath="../"></x-header-admin>
+    <x-header-auth relativePath="../"></x-header-auth>
     <main class="flex__grow-2">
         <article class="container-xxl h-100 flex-full__justify-content-center ">
             <div class="card card--delete-account p-3">

@@ -4,16 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('magazine_sections', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('editorials', function (Blueprint $table) {
+            $table->id('editorial_id');
+            $table->string('editorial', 90);
+            $table->string('slug', 90);
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('magazine_sections');
+        Schema::dropIfExists('editorials');
     }
 };

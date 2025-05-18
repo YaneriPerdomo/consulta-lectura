@@ -13,12 +13,12 @@ class DashboardController extends Controller
             case 1:
                 return view("admin.dashboard");                
             break;
-            case 2: //Usuario
-
+            case 3: //Empleado
+                return view('employee.dashboard');
             break;
             default:
                 # code...
-                break;
+            break;
         }
     }
 

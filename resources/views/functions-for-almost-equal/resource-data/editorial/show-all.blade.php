@@ -12,41 +12,32 @@
     <link rel="stylesheet" href="../css/components/_form.css">
     <link rel="stylesheet" href="../css/components/_table.css">
     <link rel="stylesheet" href="../css/components/_header.css">
-    <link rel="stylesheet" href="../../../css/components/_modal.css">
     <link rel="stylesheet" href="../css/components/_input.css">
     <link rel="stylesheet" href="../css/components/_top-bar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
-<style>
-    .article--all-job {
-        align-self: start;
-    }
-
-    .table__operations{
-        display:flex !important;
-        gap:0.5rem;
-        
-    }
-</style>
 
 <body class="h-100 d-flex flex-column">
     <x-top-bar relativePath="../"></x-top-bar>
     <x-header-auth></x-header-auth>
     <main class="flex__grow-2 flex-full__justify-content-center">
-        <article class="form w-adjustable article--all-job">
+        <article class="form  w-adjustable align-self-start">
             <div class="flex-full__justify-content-between p-0">
                 <div>
-                    <h1><b>Salas</b></h1>
+                    <h1><b>Editoriales</b></h1>
                 </div>
-                <div>
-                    <a href="{{ route('admin.room.create') }}" class="text-decoration-none text-white">
+                   @if (Auth::check() && Auth::user()->role_id == 3)
+                    <div>
+                    <a href="{{ route('employee.editorial.create') }}">
                         <button class="button button--color-blue">
-                            Agregar sala
+                            Agregar Editorial
                         </button>
                     </a>
                 </div>
+                @endif
+
             </div>
             <div class="">
                 <hr>
@@ -59,30 +50,29 @@
                     <table class='dataTable'>
                         <thead>
                             <tr>
-                                <th>Cargo</th>
-                                <th>Description</th>
+                                <th>Editorial</th>
                                 <th>Operaciones</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            @if ($rooms->items() == [])
-                                <p>No hay cargos registrados por los momentos.</p>
+                            @if ($editorials->items() == [])
+                                <p>No hay editoriales registrados por los momentos.</p>
                             @else
-                                @foreach ($rooms->items() as $value)
+                                @foreach ($editorials->items() as $value)
                                     <tr class='show'>
-                                        <td>{{ $value->room }}</td>
-                                        <td>{{ $value->description }}</td>
+                                        <td>{{ $value->editorial }}</td>
                                         </td>
-                                        <td class='table__operations'>
-                                            <a href="{{ route('admin.room.delete', $value->room) }}">
+                                        <td class='operations'>
+                                            <a href="{{ route('employee.editorial.delete', $value->slug) }}">
                                                 <button type="button" class="button button--color-red js-detele-account">
                                                     <i class='bi bi-trash''></i>
-                                                </button>
-                                            </a>
-                                            <a href=' {{ route('admin.room.edit', $value->slug ) }}'>
-                                                <button class="button button--color-orange">
-                                                    <i class='bi bi-person-lines-fill'></i>
-                                                </button>
+
+                                                            </button></a>
+                                                            <a href=' {{ route('employee.editorial.edit', $value->slug ?? null) }}'>
+                                                        <button class="button button--color-orange">
+                                                            <i class='bi bi-person-lines-fill'></i>
+                                                        </button>
                                             </a>
 
                                         </td>
@@ -93,18 +83,20 @@
                     </table>
                 </section>
                 <div>
+
                 </div>
                 <div class="flex-full__justify-content-between">
                     <div>
                         <p>
-                            Mostrando {{ $rooms->count() == 1 ? 'registro' : 'registros' }} 1 - {{ $rooms->count() }}
-                            de un total de {{ $rooms->total() }}
+                            Mostrando {{ $editorials->count() > 0 ? 'registros' : 'registro' }} {{ $editorials->count() }} - {{ $editorials->count() }}
+                            de un total de {{ $editorials->total() }}
                         </p>
                     </div>
                     <div>
-                        {{ $rooms->links() }}
+                        {{ $editorials->links() }}
                     </div>
                 </div>
+
             </div>
         </article>
     </main>

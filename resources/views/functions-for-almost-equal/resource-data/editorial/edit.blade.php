@@ -22,51 +22,37 @@
     <x-top-bar relativePath="../"></x-top-bar>
     <x-header-auth></x-header-auth>
     <main class="flex__grow-2 flex-full__aligh-start">
-        <form action="{{ route('admin.job.update', $data_job->slug) }}" method="post" class="form form--employee">
-
+        <form action="{{ route('employee.editorial.update', $data_editorial->slug) }}" method="post" class="form form--employee">
             @csrf
 
             @method('PUT')
             <h1 class="form__title">
-                <b> Agregar cargo</b>
+                <b> Actualizar editorial</b>
             </h1>
+                 
             @if (session('alert-success'))
                 <div class="alert alert-success">
                     {{ session('alert-success') }}
                 </div>
-            @endif
+            @endif 
             <div class="form__item">
                 <label for="" class="form__label form__label--required">Cargo</label>
                 <div class="input-group ">
-                    <span class="form__icon input-group-text @error ('job') is-invalid--border @enderror"
+                    <span class="form__icon input-group-text @error ('editorial') is-invalid--border @enderror"
                         id="basic-addon1"><i class="bi bi-search "></i></span>
-                    <input type="text" name="job" class="form-control @error ('job') is-invalid @enderror"
+                    <input type="text" name="editorial" class="form-control @error ('editorial') is-invalid @enderror"
                         placeholder="Yaneri Perdomo" aria-label="Username" aria-describedby="basic-addon1" autofocus
-                        value="{{ $data_job->job }} ">
+                        value="{{ $data_editorial->editorial }}">
                 </div>
-                @error('job')
+                @error('editorial')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form__item">
-                <label for="" class="form__label form__label--required">Descripcion</label>
-                <div class="input-group ">
-                    <span class="form__icon input-group-text @error ('description') is-invalid--border @enderror"
-                        id="basic-addon1"><i class="bi bi-search "></i></span>
-                    <input type="text" name="description"
-                        class="form-control @error ('description') is-invalid @enderror" placeholder="Yaneri Perdomo"
-                        aria-label="Username" aria-describedby="basic-addon1" autofocus
-                        value="{{ $data_job->description ?? ''}}">
-                </div>
-                @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
+            
             <hr class="form__line">
             <div class="form__button w-100">
                 <button class="button button--color-blue w-100" type="submit">
-                    Crear cargo
+                    Actualizar editorial
                 </button>
             </div>
         </form>

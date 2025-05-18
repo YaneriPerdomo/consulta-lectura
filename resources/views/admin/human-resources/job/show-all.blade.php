@@ -19,17 +19,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
-<style>
-    .article--all-job {
-        align-self: start;
-    }
-</style>
+ 
 
 <body class="h-100 d-flex flex-column">
     <x-top-bar relativePath="../"></x-top-bar>
-    <x-header-admin></x-header-admin>
+    <x-header-auth></x-header-auth>
     <main class="flex__grow-2 flex-full__justify-content-center">
-        <article class="form w-adjustable article--all-job">
+        <article class="form w-adjustable align-self-start">
             <div class="flex-full__justify-content-between p-0">
                 <div>
                     <h1><b>Cargos</b></h1>

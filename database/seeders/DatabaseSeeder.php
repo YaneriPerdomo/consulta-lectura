@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             IdentityCardSeeder::class,      
             JobSeeder::class, 
+            LanguageSeeder::class,
             GenderSeed::class, 
             RoomSeeder::class   
         ]);

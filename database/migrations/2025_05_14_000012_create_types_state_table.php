@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('newspaper_sections', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('types_state', function (Blueprint $table) {
+            $table->id('type_state_id');
+            $table->string('type_state', 40)->unique();
+            
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('newspaper_sections');
+        Schema::dropIfExists('types_state');
     }
 };
