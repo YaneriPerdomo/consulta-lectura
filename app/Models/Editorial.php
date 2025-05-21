@@ -12,6 +12,7 @@ class Editorial extends Model
 
 
     protected $fillable = [
+        'editorial_id',
         'editorial',
         'slug'
     ];

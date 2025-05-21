@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminEmployeeController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CopieController;
 use App\Http\Controllers\CreateAccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteAccountController;
@@ -114,6 +115,8 @@ Route::controller(EmployeeBookController::class)->middleware(['auth', CheckEmplo
     Route::get('recursos-de-lectura/libros', 'index')->name('employee.book.index');
     Route::get('recursos-de-lectura/libro/crear', 'create')->name('employee.book.create');
     Route::post('recursos-de-lectura/libros', 'store')->name('employee.book.store');
+    Route::get('recursos-de-lectura/libro/{slug}/editar', 'edit')->name('book.edit');
+    Route::put('recursos-de-lecutra/libro/{slug}/editar', 'update')->name('book.update');
 
 });
 
@@ -123,7 +126,7 @@ Route::controller(AuthorController::class)->middleware(['auth'])->group(function
     Route::post('datos-de-recursos-de-lectura/autores', 'store')->name('employee.author.store');
     Route::get('datos-de-recursos-de-lectura/autor/{slug}/editar', 'edit')->name('employee.author.edit');
     Route::put('datos-de-recursos-de-lectura/autor/{slug}/actualizar', 'update')->name('employee.author.update');
-    Route::get('datos-de-recursos-de-lectura/{slug}/delete', 'delete')->name('employee.author.delete');
+    Route::get('datos-de-recursos-de-lectura/{slug}/delete', 'delete')->name('author.delete');
 
 });
 
@@ -149,5 +152,10 @@ Route::controller(TagController::class)->middleware(['auth'])->group(function ()
     Route::get('datos-de-recursos-de-lectura/{slug}/delete', 'delete')->name('employee.tag.delete');
 });
 
-
- 
+Route::controller(CopieController::class)->middleware(['auth'])->group(function () {
+    Route::get('recursos-de-lectura/libro/{slug}/botones', 'index')->name('copie.book.index');
+    Route::get('recursos-de-lectura/libro/{slug}/copias-prestadas','borrowedCopies')->name('copie.book.borrowed-copies');
+    Route::get('recursos-de-lectura/libros/{slug}/editar', 'edit')->name('copie.book.edit');
+    Route::put('recursos-de-lectura/libros/{slug}/actualizar', 'update')->name('copie.book.update');
+    Route::get('recursos-de-lectura/libros/{slug}/delete', 'delete')->name('copie.book.delete');
+});

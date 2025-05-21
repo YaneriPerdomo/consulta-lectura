@@ -28,7 +28,7 @@
                 <div>
                     <h1><b>Editoriales</b></h1>
                 </div>
-                   @if (Auth::check() && Auth::user()->role_id == 3)
+                   @if (Auth::check() && Auth::user()->rol_id == 3)
                     <div>
                     <a href="{{ route('employee.editorial.create') }}">
                         <button class="button button--color-blue">
@@ -64,17 +64,21 @@
                                         <td>{{ $value->editorial }}</td>
                                         </td>
                                         <td class='operations'>
-                                            <a href="{{ route('employee.editorial.delete', $value->slug) }}">
+                                            <a href=" ">
                                                 <button type="button" class="button button--color-red js-detele-account">
                                                     <i class='bi bi-trash''></i>
-
-                                                            </button></a>
-                                                            <a href=' {{ route('employee.editorial.edit', $value->slug ?? null) }}'>
-                                                        <button class="button button--color-orange">
-                                                            <i class='bi bi-person-lines-fill'></i>
-                                                        </button>
+                                                </button>
                                             </a>
-
+                                            <a href=' {{ route('employee.editorial.edit', $value->slug ?? null) }}'>
+                                                <button class="button button--color-orange">
+                                                    <i class='bi bi-person-lines-fill'></i>
+                                                </button>
+                                            </a>
+                                            <a href="">
+                                                <button type="button" class="button button--color-orange">
+                                                    Copias
+                                                </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

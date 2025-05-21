@@ -19,4 +19,8 @@ class Room extends Model
     public function employees(){
         return $this->hasMany(Employee::class, 'room_id');
     }
+
+    public function books(){
+        return $this->hasMany(Book::class, 'room_id');
+    }
 }

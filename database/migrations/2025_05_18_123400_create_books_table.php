@@ -21,6 +21,12 @@ return new class extends Migration {
             $table->foreignId('language_id')
                 ->nullable()->constrained('languages', 'language_id')
                 ->onDelete('set null');
+            $table->foreignId('room_id')
+                ->nullable()->constrained('rooms', 'room_id')
+                ->onDelete('set null');
+            $table->foreignId('employee_id')
+                ->nullable()->constrained('employees', 'empleyee_id')
+                ->onDelete('set null');
             $table->string('title', 60)->unique();
             $table->string('sub_title', 90)->nullable();
             $table->string('translator', 60)->nullable();
@@ -28,9 +34,10 @@ return new class extends Migration {
             $table->string('ISBN', 13)->unique();
             $table->integer('page_number')->unsigned()->nullable();
             $table->date('publication_date');
-            $table->text('image_path')->nullable()->default('default');
+            $table->string('image_path')->nullable()->default('default');
+            $table->text('location')->nullable();
             $table->string('slug', 60)->nullable();
-         
+
         });
     }
 

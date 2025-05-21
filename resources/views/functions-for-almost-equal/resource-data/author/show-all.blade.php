@@ -28,7 +28,8 @@
                 <div>
                     <h1><b>Autor/a</b></h1>
                 </div>
-                @if (Auth::check() && Auth::user()->role_id == 3)
+             
+                @if (Auth::check() && Auth::user()->rol_id == 3)
                     <div>
                     <a href="{{ route('employee.author.create') }}">
                         <button class="button button--color-blue">
@@ -66,7 +67,7 @@
                                         <td>{{ $value->gender_id == 1 ? 'F' : 'M' }}</td>
                                         </td>
                                         <td class='operations'>
-                                            <a href="{{ route('employee.author.delete', $value->slug) }}">
+                                            <a href=" ">
                                                 <button type="button" class="button button--color-red js-detele-account">
                                                     <i class='bi bi-trash''></i>
 
