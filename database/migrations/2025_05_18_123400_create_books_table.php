@@ -25,7 +25,7 @@ return new class extends Migration {
                 ->nullable()->constrained('rooms', 'room_id')
                 ->onDelete('set null');
             $table->foreignId('employee_id')
-                ->nullable()->constrained('employees', 'empleyee_id')
+                ->nullable()->constrained('employees', 'employee_id')
                 ->onDelete('set null');
             $table->string('title', 60)->unique();
             $table->string('sub_title', 90)->nullable();

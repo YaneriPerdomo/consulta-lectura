@@ -16,6 +16,8 @@ class Copie extends Model
         'book_id',
         'type_state_id',
         'acquisition_date',
+        'location',
+        'notes'
     ];
 
     public function book(){

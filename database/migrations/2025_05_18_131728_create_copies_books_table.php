@@ -19,6 +19,7 @@ return new class extends Migration {
                 ->nullable()->constrained('types_state', 'type_state_id')
                 ->onDelete('set null');
             $table->date('acquisition_date')->default(now());
+            $table->text('notes')->nullable();
         });
     }
 

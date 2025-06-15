@@ -7,6 +7,14 @@
     background-color: var(--color-red) !important;
 }
 
+.button--color-yellow{
+    background: var(--color-yellow) !important;
+}
+
+.button--color-vinotinto{
+    background-color: var(--color-vinotinto) !important;
+}
+
 .button--color-grey {
     background-color: var(--color-grey) !important;
 }

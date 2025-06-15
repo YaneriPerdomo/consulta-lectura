@@ -10,6 +10,8 @@
     --color-light-red: rgb(255, 187, 182);
     --color-orange: rgb(229, 95, 43) ;
     --color-pink : rgb(255, 137, 156);
+    --color-yellow: rgb(236, 236, 94) ;
+    --color-vinotinto: #b41c38 ;
 }
 body {
     background: rgb(230, 230, 230) !important;

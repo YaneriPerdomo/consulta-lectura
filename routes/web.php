@@ -141,8 +141,6 @@ Route::controller(EditorialController::class)->middleware(['auth'])->group(funct
 
 });
 
-
-
 Route::controller(TagController::class)->middleware(['auth'])->group(function () {
     Route::get('datos-de-recursos-de-lectura/etiquetas', 'index')->name('employee.tag.index');
     Route::get('datos-de-recursos-de-lectura/etiqueta/crear', 'create')->name('employee.tag.create');
@@ -155,6 +153,8 @@ Route::controller(TagController::class)->middleware(['auth'])->group(function ()
 Route::controller(CopieController::class)->middleware(['auth'])->group(function () {
     Route::get('recursos-de-lectura/libro/{slug}/botones', 'index')->name('copie.book.index');
     Route::get('recursos-de-lectura/libro/{slug}/copias-prestadas','borrowedCopies')->name('copie.book.borrowed-copies');
+    Route::get('recursos-de-lectura/libro/{slug}/crear-copias','createCopies')->name('copie.book.create');
+    Route::post('recursos-de-lectura/libro/{slug}/copias-prestadas','store')->name('copie.book.store');
     Route::get('recursos-de-lectura/libros/{slug}/editar', 'edit')->name('copie.book.edit');
     Route::put('recursos-de-lectura/libros/{slug}/actualizar', 'update')->name('copie.book.update');
     Route::get('recursos-de-lectura/libros/{slug}/delete', 'delete')->name('copie.book.delete');

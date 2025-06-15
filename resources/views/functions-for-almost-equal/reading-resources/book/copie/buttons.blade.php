@@ -19,9 +19,9 @@
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
 <style>
-    .copie__count{
+    .copie__count {
         display: block;
-  text-align: center;
+        text-align: center;
     }
 </style>
 
@@ -31,21 +31,31 @@
     <main class="flex__grow-2 flex-full__justify-content-center">
         <div class="flex__grow-2 flex-full__justify-content-center">
             <article class="form  w-adjustable align-self-start">
-                <div class="flex-full__justify-content-between p-0">
-                    <div> <a href="{{ route('copie.book.borrowed-copies' , $slug) }}">
+                <div class="flex-full__justify-aligh-start ">
+                    <div>
+                        <a href="{{ route('copie.book.create', $slug) }}">
                             <button class="button button--color-blue">
-                                Gestionar Copias para Préstamo
+                                Agregar mas copias
+                            </button>
+                        </a>
+                        <hr>
+                    </div>
+                </div>
+                <div class="flex-full__justify-content-between p-0">
+                    <div> <a href="{{ route('copie.book.borrowed-copies', $slug) }}">
+                            <button class="button button--color-blue">
+                                Copias para Préstamo
                             </button>
                         </a>
                         <hr>
                         <small class="copie__count">
                             @if ($not_loaned <= 1)
                                 Disponible
-                             @else
+                            @else
                                 Disponibles
-                            @endif : 
+                            @endif :
                             {{ $not_loaned }}
-                            
+
                         </small>
                     </div>
                     <div>
@@ -56,12 +66,48 @@
                         </a>
                         <hr>
                         <small class="copie__count">
-                             @if ($loane <= 1)
-                                Prestada
-                             @else
-                                Prestadas
+                            @if ($loane <= 1)
+                                Prestado
+                            @else
+                                Prestados
                             @endif : {{ $loane }}
-                            
+
+                        </small>
+                    </div>
+                    <div>
+                        <a href="">
+                            <button class="button button--color-orange">
+                                Copias en reparación
+                            </button>
+                        </a>
+                        <hr>
+                        <small class="copie__count">
+                            @if ($under_repair <= 1)
+                                Pendiente
+                            @else
+                                Pendientes
+                            @endif : {{ $under_repair }}
+
+                        </small>
+                    </div>
+                
+                </div>
+                <hr>
+                <div class="flex-full__justify-aligh-start ">
+                     <div>
+                        <a href="">
+                            <button class="button button--color-orange">
+                                Copias perdidas o dañadas
+                            </button>
+                        </a>
+                        <hr>
+                        <small class="copie__count">
+                            @if ($lost_or_damaged <= 1)
+                                Número actual
+                            @else
+                                Números actuales
+                            @endif : {{ $lost_or_damaged }}
+
                         </small>
                     </div>
                 </div>

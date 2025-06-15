@@ -28,14 +28,7 @@
                 <article class="form">
                     <div class="flex-full__justify-content-between p-0">
                         <div>
-                         <h1><b>Copias para gestionar de: {{$title}}</b></h1>
-                        </div>
-                        <div>
-                            <a href="{{ route('employee.book.create') }}">
-                                <button class="button button--color-blue">
-                                    Agregar libro
-                                </button>
-                            </a>
+                         <h1><b>Copias de: {{$title}}</b></h1>
                         </div>
                     </div>
                     <div class="">
@@ -65,59 +58,65 @@
                                     @else
                                         @foreach ($copies->items() as $value)
                                             <tr class='show'>
-   <td>
-                                                   {{ $value->typeState->type_state ?? '' }}
-                                                </td>
-                                            
-                                              
                                                 <td>
-                                                    {{ $value->location ?? 'No hay una ubicación exacta
-' }}
+                                                {{ $value->typeState->type_state ?? '' }}</td>
+                                                <td>
+                                                    {{ $value->location ?? 'No hay una ubicación exacta' }}
                                                 </td>
                                                 <td>
                                                     {{ $value->acquisition_date	 }}
                                                 </td>
                                                 <td class='operations'>
+                                                        <a href="{{ route('copie.book.edit', $value->slug) }}" title="Editar">
+                                                            <button class="button button--color-vinotinto">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </button>
+                                                        </a>    
+                                                        <a href="" title="Eliminar">
+                                                             <button class='button button--color-red'>
+                                                            <i class='bi bi-trash'></i>
+                                                        </button>
+                                                        </a>
                                                     @switch($value->typeState->type_state_id)
                                                         @case(1)
-                                                        <a href="">
-                                                            <button class='button button--color-red'>
-                                                                <i class='bi bi-trash'></i>
-                                                                Prestar
+                                                        <a href="" title="Prestar">
+                                                            <button class='button button--color-orange'>
+                                                                <i class="bi bi-people-fill"></i>
                                                             </button>
                                                         </a>         
                                                         @break
                                                         @case(3)
                                                         <a href="">
-                                                            <button class='button button--color-red'>
-                                                                <i class='bi bi-trash'></i>
-                                                                Mover estado
+                                                            <button class='button button--color-yellow'>
+                                                                <i class="bi  bi-arrow-down-up text--color-black" ></i>
                                                             </button>
                                                         </a>         
                                                         @break
                                                         @case(4)
                                                         <a href="">
-                                                            <button class='button button--color-red'>
-                                                                <i class='bi bi-trash'></i>
-                                                                mover estado
+                                                            <button class='button button--color-yellow'>
+                                                                <i class="bi  bi-arrow-down-up text--color-black" ></i>
                                                             </button>
                                                         </a>         
                                                         @break
                                                          @case(4)
                                                         <a href="">
-                                                            <button class='button button--color-red'>
-                                                                <i class='bi bi-trash'></i>
-                                                                Ver detalles
+                                                            <button class='button button--color-grey'>
+                                                                <i class="bi bi-paperclip"></i>
+                                                               
+                                                                
                                                             </button>
-                                                        </a>         
+                                                        </a>   
+                                                        
                                                         @break
                                                          @case(5)
-                                                        <a href="">
-                                                            <button class='button button--color-red'>
-                                                                <i class='bi bi-trash'></i>
-                                                                 Ver detalles
+                                                         <a href="">
+                                                            <button class='button button--color-grey'>
+                                                                <i class="bi bi-paperclip"></i>
+                                                                
+                                                                
                                                             </button>
-                                                        </a>         
+                                                        </a>        
                                                         @break
                                                     
                                                         @default
@@ -137,13 +136,14 @@
                         </div>
                         <div class="flex-full__justify-content-between">
                             <div>
-                                <p>
-
-                                </p>
-                            </div>
-                            <div>
-
-                            </div>
+                        <p>
+                            Mostrando {{ $copies->count() == 1 ? 'registro' : 'registros' }} 1 - {{ $copies->count() }}
+                            de un total de {{ $copies->total() }}
+                        </p>
+                    </div>
+                    <div>
+                        {{ $copies->links() }}
+                    </div>
                         </div>
 
                     </div>

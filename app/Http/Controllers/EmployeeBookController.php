@@ -49,6 +49,7 @@ class EmployeeBookController extends Controller
         $insert_book = new Book();
 
         $insert_book->title = $request->title;
+        $insert_book->employee_id = Auth::user()->employee->employee_id;
         $insert_book->sub_title = $request->sub_title;
         $insert_book->description = $request->description;
         $insert_book->image_path = $request->image_path;
